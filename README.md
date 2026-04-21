@@ -18,26 +18,46 @@ Train AI agents to solve real engineering tasks — mechanical design, RF circui
 
 ## Quick Start
 
-```python
-pip install prodata[cad]
+### Run in Colab (no local setup)
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_GITHUB_USERNAME/prodata-ai/blob/main/examples/cad/01_quickstart.ipynb)
+
+> **Note:** Replace `YOUR_GITHUB_USERNAME` in the badge URL above with your GitHub username after pushing the repo.
+
+### Install locally
+
+```bash
+# Clone and install
+git clone https://github.com/YOUR_GITHUB_USERNAME/prodata-ai.git
+cd prodata-ai
+pip install -e ".[cad]"
+```
+
+Dependencies installed: `cadquery`, `trimesh`, `gymnasium`, `pydantic`.  
+No API key required for the open-source verifier.
+
+### Run your first episode
+
+```python
 import gymnasium as gym
 import prodata.cad_gym  # registers environments
 
 env = gym.make("prodata/BracketDesign-v0")
 obs, info = env.reset()
 
+print(obs["task_description"])
+# → "Design an L-bracket to support 5 kg at 100 mm..."
+
 # Your agent generates CadQuery code
 action = """
 import cadquery as cq
-result = cq.Workplane("XY").box(150, 100, 10)
+result = cq.Workplane("XY").box(120, 80, 15)
 """
 
 obs, reward, terminated, truncated, info = env.step(action)
 print(f"Score: {reward:.2f} | Passed: {info['success']}")
+print(f"Dimensions: {info['dimension_scores']}")
 ```
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/prodata-ai/prodata/blob/main/examples/cad/01_quickstart.ipynb)
 
 ---
 
