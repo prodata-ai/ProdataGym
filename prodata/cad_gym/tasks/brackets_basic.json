@@ -6,22 +6,13 @@
     "difficulty": "easy",
     "description": "Design an L-bracket to mount to a vertical wall and support a 5 kg static load at 100 mm horizontal extension. Material: aluminum 6061-T6. Manufacturing: CNC milling. Budget: $20.",
     "requirements": {
-      "load_kg": 5,
-      "extension_mm": 100,
-      "material": "aluminum_6061_t6",
-      "yield_strength_mpa": 276,
-      "process": "cnc_milling",
-      "max_cost_usd": 20,
-      "max_deflection_mm": 3.0,
-      "max_bounding_box_mm": [150, 120, 15]
+      "load_kg": 5, "extension_mm": 100, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 20, "max_deflection_mm": 3.0, "max_bounding_box_mm": [150, 120, 15]
     },
-    "grading_criteria": {
-      "weights": {"structural": 0.50, "cost": 0.30, "geometry": 0.20},
-      "dimensions": {}
-    },
+    "grading_criteria": {"weights": {"structural": 0.50, "cost": 0.30, "geometry": 0.20}, "dimensions": {}},
     "tags": ["bracket", "wall_mount", "static_load", "aluminum"],
-    "reference_solution_exists": true,
-    "expected_score": 0.88
+    "reference_solution_exists": true, "expected_score": 0.88
   },
   {
     "task_id": "cad_bracket_002",
@@ -30,95 +21,752 @@
     "difficulty": "easy",
     "description": "Design a shelf bracket for 8 kg load at 200 mm extension. PLA 3D printing. Budget: $8.",
     "requirements": {
-      "load_kg": 8,
-      "extension_mm": 200,
-      "material": "pla",
-      "yield_strength_mpa": 50,
-      "process": "3d_printing",
-      "max_cost_usd": 8,
-      "max_deflection_mm": 5.0,
-      "max_bounding_box_mm": [220, 150, 20]
+      "load_kg": 8, "extension_mm": 200, "material": "pla",
+      "yield_strength_mpa": 50, "process": "3d_printing",
+      "max_cost_usd": 8, "max_deflection_mm": 5.0, "max_bounding_box_mm": [220, 150, 20]
     },
-    "grading_criteria": {
-      "weights": {"structural": 0.50, "cost": 0.30, "geometry": 0.20},
-      "dimensions": {}
-    },
+    "grading_criteria": {"weights": {"structural": 0.50, "cost": 0.30, "geometry": 0.20}, "dimensions": {}},
     "tags": ["bracket", "shelf", "3d_print", "pla"],
-    "reference_solution_exists": true,
-    "expected_score": 0.82
+    "reference_solution_exists": true, "expected_score": 0.82
   },
   {
     "task_id": "cad_bracket_003",
     "domain": "mechanical",
     "category": "bracket",
     "difficulty": "medium",
-    "description": "Design a motor mount bracket for a 2 kg BLDC motor. Must withstand 15 kg dynamic load with vibration. Steel mild. CNC milling. Budget: $35.",
+    "description": "Design a motor mount bracket for a 2 kg BLDC motor under 15 kg dynamic load with vibration. Steel mild. CNC milling. Budget: $35.",
     "requirements": {
-      "load_kg": 15,
-      "extension_mm": 80,
-      "material": "steel_mild",
-      "yield_strength_mpa": 250,
-      "process": "cnc_milling",
-      "max_cost_usd": 35,
-      "max_deflection_mm": 1.5,
-      "max_bounding_box_mm": [120, 100, 12]
+      "load_kg": 15, "extension_mm": 80, "material": "steel_mild",
+      "yield_strength_mpa": 250, "process": "cnc_milling",
+      "max_cost_usd": 35, "max_deflection_mm": 1.5, "max_bounding_box_mm": [120, 100, 12]
     },
-    "grading_criteria": {
-      "weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20},
-      "dimensions": {}
-    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
     "tags": ["bracket", "motor_mount", "dynamic_load", "steel", "vibration"],
-    "reference_solution_exists": true,
-    "expected_score": 0.85
+    "reference_solution_exists": true, "expected_score": 0.85
   },
   {
     "task_id": "cad_bracket_004",
     "domain": "mechanical",
     "category": "bracket",
     "difficulty": "medium",
-    "description": "Design a camera mount bracket for a 0.5 kg camera at 150 mm extension. Must be stiff (max 0.5 mm deflection). Aluminum 6061-T6. CNC. Budget: $25.",
+    "description": "Design a camera mount bracket for a 0.5 kg camera at 150 mm extension. Stiffness-critical: max 0.5 mm tip deflection. Aluminum 6061-T6. CNC. Budget: $25.",
     "requirements": {
-      "load_kg": 0.5,
-      "extension_mm": 150,
-      "material": "aluminum_6061_t6",
-      "yield_strength_mpa": 276,
-      "process": "cnc_milling",
-      "max_cost_usd": 25,
-      "max_deflection_mm": 0.5,
-      "max_bounding_box_mm": [180, 100, 10]
+      "load_kg": 0.5, "extension_mm": 150, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 25, "max_deflection_mm": 0.5, "max_bounding_box_mm": [180, 100, 10]
     },
-    "grading_criteria": {
-      "weights": {"structural": 0.60, "cost": 0.20, "geometry": 0.20},
-      "dimensions": {}
-    },
+    "grading_criteria": {"weights": {"structural": 0.60, "cost": 0.20, "geometry": 0.20}, "dimensions": {}},
     "tags": ["bracket", "camera_mount", "stiffness_critical", "aluminum"],
-    "reference_solution_exists": true,
-    "expected_score": 0.90
+    "reference_solution_exists": true, "expected_score": 0.90
   },
   {
     "task_id": "cad_bracket_005",
     "domain": "mechanical",
     "category": "bracket",
     "difficulty": "hard",
-    "description": "Design a multi-directional bracket that supports 20 kg load at 250 mm extension AND 10 kg lateral load simultaneously. Must operate at -40°C to +85°C without failure. Aluminum 6061-T6. CNC. Budget: $60.",
+    "description": "Design a multi-directional bracket supporting 20 kg vertical and 10 kg lateral load simultaneously at 250 mm extension. Must operate -40°C to +85°C. Aluminum 6061-T6. CNC. Budget: $60.",
     "requirements": {
-      "load_kg": 20,
-      "extension_mm": 250,
-      "lateral_load_kg": 10,
-      "material": "aluminum_6061_t6",
-      "yield_strength_mpa": 276,
-      "process": "cnc_milling",
-      "max_cost_usd": 60,
-      "max_deflection_mm": 2.0,
-      "max_bounding_box_mm": [280, 200, 20],
+      "load_kg": 20, "extension_mm": 250, "lateral_load_kg": 10,
+      "material": "aluminum_6061_t6", "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 60, "max_deflection_mm": 2.0, "max_bounding_box_mm": [280, 200, 20],
       "temp_range_c": [-40, 85]
     },
-    "grading_criteria": {
-      "weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20},
-      "dimensions": {}
-    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
     "tags": ["bracket", "multi_load", "thermal", "aluminum", "advanced"],
-    "reference_solution_exists": true,
-    "expected_score": 0.80
+    "reference_solution_exists": true, "expected_score": 0.80
+  },
+  {
+    "task_id": "cad_bracket_006",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "easy",
+    "description": "Design a wall bracket to support a pipe hanger carrying 12 kg (pipe + fluid) at 80 mm from the wall. Steel mild. Laser cut. Budget: $15. Deflection under 4 mm.",
+    "requirements": {
+      "load_kg": 12, "extension_mm": 80, "material": "steel_mild",
+      "yield_strength_mpa": 250, "process": "laser_cut",
+      "max_cost_usd": 15, "max_deflection_mm": 4.0, "max_bounding_box_mm": [120, 100, 8]
+    },
+    "grading_criteria": {"weights": {"structural": 0.50, "cost": 0.30, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "pipe_hanger", "steel", "laser_cut"],
+    "reference_solution_exists": true, "expected_score": 0.86
+  },
+  {
+    "task_id": "cad_bracket_007",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "easy",
+    "description": "Design a wall-mounted arm bracket for a 3 kg pendant light fixture at 300 mm horizontal extension. Aluminum 6061-T6. 3D printing. Budget: $12. Deflection under 5 mm.",
+    "requirements": {
+      "load_kg": 3, "extension_mm": 300, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "3d_printing",
+      "max_cost_usd": 12, "max_deflection_mm": 5.0, "max_bounding_box_mm": [320, 80, 15]
+    },
+    "grading_criteria": {"weights": {"structural": 0.45, "cost": 0.35, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "lighting", "arm_mount", "3d_print"],
+    "reference_solution_exists": true, "expected_score": 0.83
+  },
+  {
+    "task_id": "cad_bracket_008",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "easy",
+    "description": "Design a wall bracket for a 18 kg bicycle storage hook at 200 mm extension. Steel mild. CNC milling. Budget: $20.",
+    "requirements": {
+      "load_kg": 18, "extension_mm": 200, "material": "steel_mild",
+      "yield_strength_mpa": 250, "process": "cnc_milling",
+      "max_cost_usd": 20, "max_deflection_mm": 5.0, "max_bounding_box_mm": [220, 120, 10]
+    },
+    "grading_criteria": {"weights": {"structural": 0.50, "cost": 0.30, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "bike_storage", "wall_mount", "steel"],
+    "reference_solution_exists": true, "expected_score": 0.85
+  },
+  {
+    "task_id": "cad_bracket_009",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "easy",
+    "description": "Design a ceiling-mounted projector arm bracket for an 8 kg projector at 400 mm horizontal extension. Aluminum 6061-T6. CNC milling. Budget: $30. Deflection under 3 mm to avoid image drift.",
+    "requirements": {
+      "load_kg": 8, "extension_mm": 400, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 30, "max_deflection_mm": 3.0, "max_bounding_box_mm": [430, 100, 20]
+    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "projector_mount", "ceiling", "aluminum"],
+    "reference_solution_exists": true, "expected_score": 0.84
+  },
+  {
+    "task_id": "cad_bracket_010",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "easy",
+    "description": "Design a wall bracket for a 25 kg mini-fridge at 200 mm extension. Steel mild. Laser cut. Budget: $25.",
+    "requirements": {
+      "load_kg": 25, "extension_mm": 200, "material": "steel_mild",
+      "yield_strength_mpa": 250, "process": "laser_cut",
+      "max_cost_usd": 25, "max_deflection_mm": 5.0, "max_bounding_box_mm": [250, 150, 10]
+    },
+    "grading_criteria": {"weights": {"structural": 0.50, "cost": 0.30, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "appliance_mount", "steel", "laser_cut"],
+    "reference_solution_exists": true, "expected_score": 0.84
+  },
+  {
+    "task_id": "cad_bracket_011",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "easy",
+    "description": "Design a wall mount bracket for a 6 kg power supply unit at 80 mm extension. Aluminum 6061-T6. CNC milling. Budget: $15.",
+    "requirements": {
+      "load_kg": 6, "extension_mm": 80, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 15, "max_deflection_mm": 3.0, "max_bounding_box_mm": [120, 100, 10]
+    },
+    "grading_criteria": {"weights": {"structural": 0.50, "cost": 0.30, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "psu_mount", "aluminum", "cnc"],
+    "reference_solution_exists": true, "expected_score": 0.88
+  },
+  {
+    "task_id": "cad_bracket_012",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "easy",
+    "description": "Design an outdoor hose reel wall bracket supporting 12 kg at 120 mm extension. Stainless 316 for corrosion resistance. CNC milling. Operating range -10°C to 60°C. Budget: $35.",
+    "requirements": {
+      "load_kg": 12, "extension_mm": 120, "material": "steel_316",
+      "yield_strength_mpa": 207, "process": "cnc_milling",
+      "max_cost_usd": 35, "max_deflection_mm": 4.0, "max_bounding_box_mm": [160, 100, 12],
+      "temp_range_c": [-10, 60]
+    },
+    "grading_criteria": {"weights": {"structural": 0.50, "cost": 0.30, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "outdoor", "corrosion_resistant", "stainless"],
+    "reference_solution_exists": true, "expected_score": 0.83
+  },
+  {
+    "task_id": "cad_bracket_013",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "easy",
+    "description": "Design a wall bracket for a small air compressor at 25 kg and 150 mm extension. Steel mild. CNC milling. Budget: $35.",
+    "requirements": {
+      "load_kg": 25, "extension_mm": 150, "material": "steel_mild",
+      "yield_strength_mpa": 250, "process": "cnc_milling",
+      "max_cost_usd": 35, "max_deflection_mm": 3.0, "max_bounding_box_mm": [200, 120, 12]
+    },
+    "grading_criteria": {"weights": {"structural": 0.50, "cost": 0.30, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "compressor_mount", "steel", "cnc"],
+    "reference_solution_exists": true, "expected_score": 0.85
+  },
+  {
+    "task_id": "cad_bracket_014",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "easy",
+    "description": "Design a network switch rack-mount extension arm at 5 kg, 100 mm extension. Aluminum 6061-T6. CNC milling. Budget: $18.",
+    "requirements": {
+      "load_kg": 5, "extension_mm": 100, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 18, "max_deflection_mm": 2.0, "max_bounding_box_mm": [130, 80, 10]
+    },
+    "grading_criteria": {"weights": {"structural": 0.50, "cost": 0.30, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "rack_mount", "electronics", "aluminum"],
+    "reference_solution_exists": true, "expected_score": 0.89
+  },
+  {
+    "task_id": "cad_bracket_015",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "easy",
+    "description": "Design a workshop tool wall mount bracket for 4 kg tools at 80 mm extension. Steel mild. Laser cut. Budget: $10.",
+    "requirements": {
+      "load_kg": 4, "extension_mm": 80, "material": "steel_mild",
+      "yield_strength_mpa": 250, "process": "laser_cut",
+      "max_cost_usd": 10, "max_deflection_mm": 4.0, "max_bounding_box_mm": [120, 80, 6]
+    },
+    "grading_criteria": {"weights": {"structural": 0.45, "cost": 0.35, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "tool_storage", "steel", "laser_cut"],
+    "reference_solution_exists": true, "expected_score": 0.87
+  },
+  {
+    "task_id": "cad_bracket_016",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a servo motor mount bracket for a robotic joint. The servo exerts 15 kg dynamic load at 120 mm. Stiffness-critical: max 0.5 mm deflection to maintain joint accuracy. Aluminum 6061-T6. CNC. Budget: $35.",
+    "requirements": {
+      "load_kg": 15, "extension_mm": 120, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 35, "max_deflection_mm": 0.5, "max_bounding_box_mm": [150, 100, 15]
+    },
+    "grading_criteria": {"weights": {"structural": 0.60, "cost": 0.20, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "servo_mount", "robotics", "stiffness_critical", "aluminum"],
+    "reference_solution_exists": true, "expected_score": 0.85
+  },
+  {
+    "task_id": "cad_bracket_017",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a BLDC spindle motor mount for a CNC machine. Motor weighs 12 kg, causes 0.4 mm max allowable deflection at the spindle tip (80 mm extension). Aluminum 6061-T6. CNC milling. Budget: $28.",
+    "requirements": {
+      "load_kg": 12, "extension_mm": 80, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 28, "max_deflection_mm": 0.4, "max_bounding_box_mm": [120, 100, 20]
+    },
+    "grading_criteria": {"weights": {"structural": 0.60, "cost": 0.20, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "cnc_machine", "spindle_mount", "stiffness_critical"],
+    "reference_solution_exists": true, "expected_score": 0.87
+  },
+  {
+    "task_id": "cad_bracket_018",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a centrifugal pump mounting bracket. Pump weighs 40 kg with an additional 8 kg lateral thrust from discharge piping at 150 mm extension. Steel mild. CNC milling. Budget: $60.",
+    "requirements": {
+      "load_kg": 40, "extension_mm": 150, "lateral_load_kg": 8,
+      "material": "steel_mild", "yield_strength_mpa": 250, "process": "cnc_milling",
+      "max_cost_usd": 60, "max_deflection_mm": 2.0, "max_bounding_box_mm": [200, 150, 20]
+    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "pump_mount", "combined_loads", "steel"],
+    "reference_solution_exists": true, "expected_score": 0.83
+  },
+  {
+    "task_id": "cad_bracket_019",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a wall bracket for an industrial gearbox at 60 kg and 120 mm extension. Steel mild. CNC milling. Budget: $75. Safety factor must exceed 2.5.",
+    "requirements": {
+      "load_kg": 60, "extension_mm": 120, "material": "steel_mild",
+      "yield_strength_mpa": 250, "process": "cnc_milling",
+      "max_cost_usd": 75, "max_deflection_mm": 3.0, "max_bounding_box_mm": [180, 150, 25]
+    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "gearbox_mount", "heavy_load", "steel"],
+    "reference_solution_exists": true, "expected_score": 0.82
+  },
+  {
+    "task_id": "cad_bracket_020",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a rooftop solar panel rail mounting bracket. Panel weighs 20 kg with 10 kg lateral wind load at 200 mm. Aluminum 6061-T6. CNC. Operating range -30°C to +80°C. Budget: $40.",
+    "requirements": {
+      "load_kg": 20, "extension_mm": 200, "lateral_load_kg": 10,
+      "material": "aluminum_6061_t6", "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 40, "max_deflection_mm": 3.0, "max_bounding_box_mm": [250, 100, 15],
+      "temp_range_c": [-30, 80]
+    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "solar_mount", "outdoor", "wind_load", "thermal"],
+    "reference_solution_exists": true, "expected_score": 0.83
+  },
+  {
+    "task_id": "cad_bracket_021",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design an EV battery module mounting bracket. Module weighs 30 kg at 100 mm extension. Must withstand thermal cycling -40°C to +85°C without fatigue failure. Aluminum 6061-T6. CNC. Budget: $55.",
+    "requirements": {
+      "load_kg": 30, "extension_mm": 100, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 55, "max_deflection_mm": 2.0, "max_bounding_box_mm": [150, 120, 15],
+      "temp_range_c": [-40, 85]
+    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "ev_battery", "thermal_cycling", "automotive"],
+    "reference_solution_exists": true, "expected_score": 0.84
+  },
+  {
+    "task_id": "cad_bracket_022",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a laboratory precision balance isolation mount. Instrument weighs 5 kg at 200 mm extension. Ultra-stiffness required: max 0.2 mm deflection (vibration sensitivity). Aluminum 6061-T6. CNC. Budget: $45.",
+    "requirements": {
+      "load_kg": 5, "extension_mm": 200, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 45, "max_deflection_mm": 0.2, "max_bounding_box_mm": [250, 150, 25]
+    },
+    "grading_criteria": {"weights": {"structural": 0.65, "cost": 0.15, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "precision_instrument", "stiffness_critical", "laboratory"],
+    "reference_solution_exists": true, "expected_score": 0.86
+  },
+  {
+    "task_id": "cad_bracket_023",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a PCB assembly mounting plate bracket. Board assembly weighs 2 kg at 60 mm extension. Deflection must stay under 0.15 mm to prevent solder joint fatigue. Aluminum 6061-T6. CNC. Budget: $20.",
+    "requirements": {
+      "load_kg": 2, "extension_mm": 60, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 20, "max_deflection_mm": 0.15, "max_bounding_box_mm": [100, 80, 15]
+    },
+    "grading_criteria": {"weights": {"structural": 0.65, "cost": 0.15, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "pcb_mount", "electronics", "stiffness_critical"],
+    "reference_solution_exists": true, "expected_score": 0.88
+  },
+  {
+    "task_id": "cad_bracket_024",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a hydraulic manifold support bracket. Manifold weighs 35 kg at 100 mm extension. Must handle pressure-pulse dynamic loads. Steel mild. CNC. Max 1 mm deflection. Budget: $55.",
+    "requirements": {
+      "load_kg": 35, "extension_mm": 100, "material": "steel_mild",
+      "yield_strength_mpa": 250, "process": "cnc_milling",
+      "max_cost_usd": 55, "max_deflection_mm": 1.0, "max_bounding_box_mm": [160, 130, 20]
+    },
+    "grading_criteria": {"weights": {"structural": 0.60, "cost": 0.20, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "hydraulic", "dynamic_load", "steel"],
+    "reference_solution_exists": true, "expected_score": 0.84
+  },
+  {
+    "task_id": "cad_bracket_025",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a marine outboard motor mounting bracket. Motor weighs 25 kg with 15 kg lateral thrust at 250 mm. Stainless 316 for saltwater corrosion resistance. CNC. Budget: $85.",
+    "requirements": {
+      "load_kg": 25, "extension_mm": 250, "lateral_load_kg": 15,
+      "material": "steel_316", "yield_strength_mpa": 207, "process": "cnc_milling",
+      "max_cost_usd": 85, "max_deflection_mm": 3.0, "max_bounding_box_mm": [300, 150, 20],
+      "temp_range_c": [-5, 60]
+    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "marine", "outboard_motor", "stainless", "corrosion"],
+    "reference_solution_exists": true, "expected_score": 0.81
+  },
+  {
+    "task_id": "cad_bracket_026",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a telescope optical tube mounting bracket for an 8 kg scope at 300 mm. Critical stiffness: max 0.15 mm deflection to prevent image blur. Aluminum 7075-T6 for strength-to-weight. CNC. Budget: $80.",
+    "requirements": {
+      "load_kg": 8, "extension_mm": 300, "material": "aluminum_7075_t6",
+      "yield_strength_mpa": 503, "process": "cnc_milling",
+      "max_cost_usd": 80, "max_deflection_mm": 0.15, "max_bounding_box_mm": [340, 120, 30]
+    },
+    "grading_criteria": {"weights": {"structural": 0.65, "cost": 0.15, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "telescope_mount", "optics", "stiffness_critical", "al7075"],
+    "reference_solution_exists": true, "expected_score": 0.86
+  },
+  {
+    "task_id": "cad_bracket_027",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a 3D printer hotend carriage mount. Carriage weighs 0.5 kg at 50 mm. Deflection must stay under 0.05 mm to maintain print dimensional accuracy. Aluminum 6061-T6. CNC. Budget: $15.",
+    "requirements": {
+      "load_kg": 0.5, "extension_mm": 50, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 15, "max_deflection_mm": 0.05, "max_bounding_box_mm": [80, 60, 15]
+    },
+    "grading_criteria": {"weights": {"structural": 0.65, "cost": 0.15, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "3d_printer", "carriage", "ultra_stiff", "precision"],
+    "reference_solution_exists": true, "expected_score": 0.87
+  },
+  {
+    "task_id": "cad_bracket_028",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design an industrial compressor foot mount bracket. Compressor weighs 80 kg with 20 kg lateral vibration force at 120 mm. Steel mild. CNC. Budget: $70.",
+    "requirements": {
+      "load_kg": 80, "extension_mm": 120, "lateral_load_kg": 20,
+      "material": "steel_mild", "yield_strength_mpa": 250, "process": "cnc_milling",
+      "max_cost_usd": 70, "max_deflection_mm": 3.0, "max_bounding_box_mm": [180, 150, 25]
+    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "compressor_foot", "vibration", "heavy_load", "steel"],
+    "reference_solution_exists": true, "expected_score": 0.81
+  },
+  {
+    "task_id": "cad_bracket_029",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a petrochemical pipe support bracket for 50 kg pipe load at 200 mm. Stainless 316 required (H2S environment). Operating -10°C to +150°C. CNC. Budget: $90.",
+    "requirements": {
+      "load_kg": 50, "extension_mm": 200, "material": "steel_316",
+      "yield_strength_mpa": 207, "process": "cnc_milling",
+      "max_cost_usd": 90, "max_deflection_mm": 4.0, "max_bounding_box_mm": [260, 150, 20],
+      "temp_range_c": [-10, 150]
+    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "pipe_support", "petrochemical", "stainless", "high_temp"],
+    "reference_solution_exists": true, "expected_score": 0.80
+  },
+  {
+    "task_id": "cad_bracket_030",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a billboard sign wall mount bracket. Sign weighs 15 kg with 25 kg lateral wind load at 300 mm. Steel mild. CNC. Budget: $50.",
+    "requirements": {
+      "load_kg": 15, "extension_mm": 300, "lateral_load_kg": 25,
+      "material": "steel_mild", "yield_strength_mpa": 250, "process": "cnc_milling",
+      "max_cost_usd": 50, "max_deflection_mm": 5.0, "max_bounding_box_mm": [350, 150, 15]
+    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "signage", "wind_load", "combined_loads", "steel"],
+    "reference_solution_exists": true, "expected_score": 0.82
+  },
+  {
+    "task_id": "cad_bracket_031",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design an automotive HVAC compressor bracket. Compressor weighs 8 kg at 100 mm extension. Must survive -40°C to +125°C under-hood thermal cycling. Aluminum 6061-T6. CNC. Budget: $30.",
+    "requirements": {
+      "load_kg": 8, "extension_mm": 100, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 30, "max_deflection_mm": 2.0, "max_bounding_box_mm": [140, 100, 15],
+      "temp_range_c": [-40, 125]
+    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "automotive", "hvac", "thermal_cycling", "underhood"],
+    "reference_solution_exists": true, "expected_score": 0.85
+  },
+  {
+    "task_id": "cad_bracket_032",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a medical equipment cart mounting bracket for a 20 kg monitor at 150 mm extension. Stainless 316 (cleanroom/autoclave compatible). CNC. Budget: $65. No sharp edges that could snag gloves.",
+    "requirements": {
+      "load_kg": 20, "extension_mm": 150, "material": "steel_316",
+      "yield_strength_mpa": 207, "process": "cnc_milling",
+      "max_cost_usd": 65, "max_deflection_mm": 2.0, "max_bounding_box_mm": [200, 140, 15]
+    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "medical", "stainless", "cleanroom", "monitor_mount"],
+    "reference_solution_exists": true, "expected_score": 0.82
+  },
+  {
+    "task_id": "cad_bracket_033",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a wind turbine nacelle sensor arm bracket for a 3 kg sensor at 400 mm extension. Must survive -40°C to +60°C and gusts (1 mm max deflection). Aluminum 7075-T6. CNC. Budget: $85.",
+    "requirements": {
+      "load_kg": 3, "extension_mm": 400, "material": "aluminum_7075_t6",
+      "yield_strength_mpa": 503, "process": "cnc_milling",
+      "max_cost_usd": 85, "max_deflection_mm": 1.0, "max_bounding_box_mm": [450, 80, 25],
+      "temp_range_c": [-40, 60]
+    },
+    "grading_criteria": {"weights": {"structural": 0.60, "cost": 0.20, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "wind_turbine", "sensor_arm", "al7075", "stiffness_critical"],
+    "reference_solution_exists": true, "expected_score": 0.85
+  },
+  {
+    "task_id": "cad_bracket_034",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a data-center server rail extension bracket for dynamic rack loads up to 25 kg at 80 mm. Must stay under 0.8 mm deflection to prevent drive vibration. Aluminum 6061-T6. CNC. Budget: $35.",
+    "requirements": {
+      "load_kg": 25, "extension_mm": 80, "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276, "process": "cnc_milling",
+      "max_cost_usd": 35, "max_deflection_mm": 0.8, "max_bounding_box_mm": [120, 100, 15]
+    },
+    "grading_criteria": {"weights": {"structural": 0.60, "cost": 0.20, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "data_center", "rack_mount", "vibration", "stiffness_critical"],
+    "reference_solution_exists": true, "expected_score": 0.85
+  },
+  {
+    "task_id": "cad_bracket_035",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design an injection-mold temperature probe bracket. Probe assembly weighs 5 kg at 80 mm. Must operate continuously at up to 200°C. Steel 4140. CNC. Budget: $40.",
+    "requirements": {
+      "load_kg": 5, "extension_mm": 80, "material": "steel_4140",
+      "yield_strength_mpa": 655, "process": "cnc_milling",
+      "max_cost_usd": 40, "max_deflection_mm": 1.0, "max_bounding_box_mm": [120, 80, 12],
+      "temp_range_c": [20, 200]
+    },
+    "grading_criteria": {"weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "injection_mold", "high_temp", "probe_mount", "steel_4140"],
+    "reference_solution_exists": true, "expected_score": 0.87
+  },
+  {
+    "task_id": "cad_bracket_036",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design an aerospace wing actuator bracket. Load: 20 kg at 200 mm. Temperature: -55°C to +120°C. Deflection under 0.3 mm. Aluminum 7075-T6 for minimum weight. CNC. Budget: $150. High safety factor required (≥3.5).",
+    "requirements": {
+      "load_kg": 20, "extension_mm": 200, "material": "aluminum_7075_t6",
+      "yield_strength_mpa": 503, "process": "cnc_milling",
+      "max_cost_usd": 150, "max_deflection_mm": 0.3, "max_bounding_box_mm": [240, 120, 30],
+      "temp_range_c": [-55, 120]
+    },
+    "grading_criteria": {"weights": {"structural": 0.65, "cost": 0.15, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "aerospace", "actuator_mount", "al7075", "ultra_stiff", "thermal"],
+    "reference_solution_exists": true, "expected_score": 0.80
+  },
+  {
+    "task_id": "cad_bracket_037",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design an offshore wind turbine service access bracket. Vertical load 100 kg, lateral load 40 kg at 300 mm (wave/wind). Stainless 316. CNC. Operating -20°C to +60°C. Budget: $250.",
+    "requirements": {
+      "load_kg": 100, "extension_mm": 300, "lateral_load_kg": 40,
+      "material": "steel_316", "yield_strength_mpa": 207, "process": "cnc_milling",
+      "max_cost_usd": 250, "max_deflection_mm": 5.0, "max_bounding_box_mm": [370, 200, 30],
+      "temp_range_c": [-20, 60]
+    },
+    "grading_criteria": {"weights": {"structural": 0.60, "cost": 0.20, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "offshore", "wind_turbine", "stainless", "heavy_combined_load"],
+    "reference_solution_exists": true, "expected_score": 0.79
+  },
+  {
+    "task_id": "cad_bracket_038",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design a racing car differential mounting bracket. Dynamic load 60 kg, lateral braking load 20 kg at 150 mm. Steel 4140 for fatigue resistance. CNC. -20°C to +150°C (exhaust proximity). Budget: $120.",
+    "requirements": {
+      "load_kg": 60, "extension_mm": 150, "lateral_load_kg": 20,
+      "material": "steel_4140", "yield_strength_mpa": 655, "process": "cnc_milling",
+      "max_cost_usd": 120, "max_deflection_mm": 1.5, "max_bounding_box_mm": [200, 150, 20],
+      "temp_range_c": [-20, 150]
+    },
+    "grading_criteria": {"weights": {"structural": 0.60, "cost": 0.20, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "motorsport", "differential_mount", "steel_4140", "fatigue"],
+    "reference_solution_exists": true, "expected_score": 0.82
+  },
+  {
+    "task_id": "cad_bracket_039",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design a cryogenic valve actuator bracket. Load 25 kg at 150 mm. Temperature range -200°C to +25°C (liquid nitrogen). Ultra-stiff: max 0.2 mm deflection. Stainless 316 retains toughness at cryogenic temps. CNC. Budget: $110.",
+    "requirements": {
+      "load_kg": 25, "extension_mm": 150, "material": "steel_316",
+      "yield_strength_mpa": 207, "process": "cnc_milling",
+      "max_cost_usd": 110, "max_deflection_mm": 0.2, "max_bounding_box_mm": [200, 140, 30],
+      "temp_range_c": [-200, 25]
+    },
+    "grading_criteria": {"weights": {"structural": 0.65, "cost": 0.15, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "cryogenic", "valve_actuator", "stainless", "ultra_stiff"],
+    "reference_solution_exists": true, "expected_score": 0.78
+  },
+  {
+    "task_id": "cad_bracket_040",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design a nuclear facility instrumentation bracket (seismic zone III). Primary vertical load 10 kg at 100 mm, plus 5 kg seismic lateral load. Stainless 316. CNC. Budget: $140. Very high safety factor required (≥4.0).",
+    "requirements": {
+      "load_kg": 10, "extension_mm": 100, "lateral_load_kg": 5,
+      "material": "steel_316", "yield_strength_mpa": 207, "process": "cnc_milling",
+      "max_cost_usd": 140, "max_deflection_mm": 1.0, "max_bounding_box_mm": [150, 120, 25]
+    },
+    "grading_criteria": {"weights": {"structural": 0.70, "cost": 0.10, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "nuclear", "seismic", "stainless", "high_safety_factor"],
+    "reference_solution_exists": true, "expected_score": 0.78
+  },
+  {
+    "task_id": "cad_bracket_041",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design a high-cycle fatigue pump mounting bracket (10M+ cycles). Dynamic load 20 kg at 120 mm. Steel 4140 for fatigue strength. CNC. Max 1 mm deflection. Budget: $90.",
+    "requirements": {
+      "load_kg": 20, "extension_mm": 120, "material": "steel_4140",
+      "yield_strength_mpa": 655, "process": "cnc_milling",
+      "max_cost_usd": 90, "max_deflection_mm": 1.0, "max_bounding_box_mm": [170, 130, 20]
+    },
+    "grading_criteria": {"weights": {"structural": 0.65, "cost": 0.15, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "high_cycle_fatigue", "pump_mount", "steel_4140", "dynamic"],
+    "reference_solution_exists": true, "expected_score": 0.84
+  },
+  {
+    "task_id": "cad_bracket_042",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design a satellite attitude control reaction wheel bracket. Wheel weighs 8 kg at 250 mm. Extreme temperature -180°C to +150°C (orbit). Deflection under 0.1 mm (momentum disturbance budget). Aluminum 7075-T6. CNC. Budget: $350.",
+    "requirements": {
+      "load_kg": 8, "extension_mm": 250, "material": "aluminum_7075_t6",
+      "yield_strength_mpa": 503, "process": "cnc_milling",
+      "max_cost_usd": 350, "max_deflection_mm": 0.1, "max_bounding_box_mm": [300, 120, 35],
+      "temp_range_c": [-180, 150]
+    },
+    "grading_criteria": {"weights": {"structural": 0.70, "cost": 0.10, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "satellite", "space", "al7075", "cryogenic", "ultra_stiff"],
+    "reference_solution_exists": true, "expected_score": 0.76
+  },
+  {
+    "task_id": "cad_bracket_043",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design an aircraft cargo tie-down bracket rated for 9g crash load per FAR 25.561. Effective load: 10 kg item × 9g = 90 kg equivalent at 150 mm. Aluminum 7075-T6. CNC. Budget: $180. Must not fracture at 90 kg load.",
+    "requirements": {
+      "load_kg": 90, "extension_mm": 150, "material": "aluminum_7075_t6",
+      "yield_strength_mpa": 503, "process": "cnc_milling",
+      "max_cost_usd": 180, "max_deflection_mm": 5.0, "max_bounding_box_mm": [200, 150, 25],
+      "temp_range_c": [-55, 70]
+    },
+    "grading_criteria": {"weights": {"structural": 0.70, "cost": 0.10, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "aircraft", "cargo", "crash_load", "far25", "al7075"],
+    "reference_solution_exists": true, "expected_score": 0.78
+  },
+  {
+    "task_id": "cad_bracket_044",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design a subsea ROV thruster mounting bracket. Vertical 15 kg, lateral thrust 10 kg at 200 mm. Titanium 6Al-4V for maximum strength-to-weight at depth. CNC. Budget: $450.",
+    "requirements": {
+      "load_kg": 15, "extension_mm": 200, "lateral_load_kg": 10,
+      "material": "titanium_6al4v", "yield_strength_mpa": 880, "process": "cnc_milling",
+      "max_cost_usd": 450, "max_deflection_mm": 1.0, "max_bounding_box_mm": [250, 120, 25],
+      "temp_range_c": [-2, 30]
+    },
+    "grading_criteria": {"weights": {"structural": 0.60, "cost": 0.20, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "subsea", "rov", "titanium", "combined_loads"],
+    "reference_solution_exists": true, "expected_score": 0.80
+  },
+  {
+    "task_id": "cad_bracket_045",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design a Formula SAE engine mount bracket. Dynamic load 50 kg, lateral cornering load 15 kg at 150 mm. Aluminum 7075-T6 (weight-critical). CNC. Budget: $100. Compact: bounding box under 200×150×20 mm.",
+    "requirements": {
+      "load_kg": 50, "extension_mm": 150, "lateral_load_kg": 15,
+      "material": "aluminum_7075_t6", "yield_strength_mpa": 503, "process": "cnc_milling",
+      "max_cost_usd": 100, "max_deflection_mm": 1.5, "max_bounding_box_mm": [200, 150, 20],
+      "temp_range_c": [-20, 150]
+    },
+    "grading_criteria": {"weights": {"structural": 0.60, "cost": 0.20, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "motorsport", "fsae", "engine_mount", "al7075", "weight_optimized"],
+    "reference_solution_exists": true, "expected_score": 0.79
+  },
+  {
+    "task_id": "cad_bracket_046",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design a semiconductor fab robotic arm end-effector mounting bracket. Load 3 kg at 180 mm. Deflection under 0.05 mm (wafer placement accuracy). Aluminum 7075-T6. CNC. Must fit in 200×100×20 mm envelope. Budget: $120.",
+    "requirements": {
+      "load_kg": 3, "extension_mm": 180, "material": "aluminum_7075_t6",
+      "yield_strength_mpa": 503, "process": "cnc_milling",
+      "max_cost_usd": 120, "max_deflection_mm": 0.05, "max_bounding_box_mm": [200, 100, 20]
+    },
+    "grading_criteria": {"weights": {"structural": 0.70, "cost": 0.10, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "semiconductor", "robotics", "ultra_stiff", "precision", "al7075"],
+    "reference_solution_exists": true, "expected_score": 0.78
+  },
+  {
+    "task_id": "cad_bracket_047",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design a gas turbine instrumentation bracket. Sensor weighs 4 kg at 120 mm. Continuous operation at 450°C. Steel 4140 (retains strength at elevated temp). CNC. Budget: $95. Max 0.5 mm deflection.",
+    "requirements": {
+      "load_kg": 4, "extension_mm": 120, "material": "steel_4140",
+      "yield_strength_mpa": 500, "process": "cnc_milling",
+      "max_cost_usd": 95, "max_deflection_mm": 0.5, "max_bounding_box_mm": [160, 100, 20],
+      "temp_range_c": [20, 450]
+    },
+    "grading_criteria": {"weights": {"structural": 0.65, "cost": 0.15, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "gas_turbine", "high_temp", "sensor_mount", "steel_4140"],
+    "reference_solution_exists": true, "expected_score": 0.80
+  },
+  {
+    "task_id": "cad_bracket_048",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design a deep-sea pressure vessel mounting bracket for 80 kg equipment at 200 mm. Titanium 6Al-4V (corrosion + strength). Combined with 30 kg lateral current drag force. CNC. Budget: $600.",
+    "requirements": {
+      "load_kg": 80, "extension_mm": 200, "lateral_load_kg": 30,
+      "material": "titanium_6al4v", "yield_strength_mpa": 880, "process": "cnc_milling",
+      "max_cost_usd": 600, "max_deflection_mm": 3.0, "max_bounding_box_mm": [280, 200, 40],
+      "temp_range_c": [-2, 20]
+    },
+    "grading_criteria": {"weights": {"structural": 0.60, "cost": 0.20, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "deep_sea", "titanium", "combined_loads", "corrosion"],
+    "reference_solution_exists": true, "expected_score": 0.79
+  },
+  {
+    "task_id": "cad_bracket_049",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design a hypersonic wind tunnel model mounting sting bracket. Aerodynamic load 25 kg at 350 mm with 12 kg lateral pitching moment force. Aluminum 7075-T6. CNC. Max 0.2 mm deflection (model attitude accuracy). Budget: $200.",
+    "requirements": {
+      "load_kg": 25, "extension_mm": 350, "lateral_load_kg": 12,
+      "material": "aluminum_7075_t6", "yield_strength_mpa": 503, "process": "cnc_milling",
+      "max_cost_usd": 200, "max_deflection_mm": 0.2, "max_bounding_box_mm": [400, 120, 35],
+      "temp_range_c": [-55, 80]
+    },
+    "grading_criteria": {"weights": {"structural": 0.65, "cost": 0.15, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "wind_tunnel", "hypersonic", "al7075", "ultra_stiff", "research"],
+    "reference_solution_exists": true, "expected_score": 0.77
+  },
+  {
+    "task_id": "cad_bracket_050",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design a nuclear reactor coolant pipe support bracket. Load 120 kg at 250 mm plus 50 kg seismic lateral. Stainless 316. CNC. Safety factor must exceed 4.0. Budget: $300. This is safety-critical: over-design is acceptable, under-design is not.",
+    "requirements": {
+      "load_kg": 120, "extension_mm": 250, "lateral_load_kg": 50,
+      "material": "steel_316", "yield_strength_mpa": 207, "process": "cnc_milling",
+      "max_cost_usd": 300, "max_deflection_mm": 5.0, "max_bounding_box_mm": [350, 250, 40]
+    },
+    "grading_criteria": {"weights": {"structural": 0.75, "cost": 0.05, "geometry": 0.20}, "dimensions": {}},
+    "tags": ["bracket", "nuclear", "pipe_support", "seismic", "stainless", "safety_critical"],
+    "reference_solution_exists": true, "expected_score": 0.78
   }
 ]
