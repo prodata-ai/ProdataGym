@@ -1,0 +1,124 @@
+[
+  {
+    "task_id": "cad_bracket_001",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "easy",
+    "description": "Design an L-bracket to mount to a vertical wall and support a 5 kg static load at 100 mm horizontal extension. Material: aluminum 6061-T6. Manufacturing: CNC milling. Budget: $20.",
+    "requirements": {
+      "load_kg": 5,
+      "extension_mm": 100,
+      "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276,
+      "process": "cnc_milling",
+      "max_cost_usd": 20,
+      "max_deflection_mm": 3.0,
+      "max_bounding_box_mm": [150, 120, 15]
+    },
+    "grading_criteria": {
+      "weights": {"structural": 0.50, "cost": 0.30, "geometry": 0.20},
+      "dimensions": {}
+    },
+    "tags": ["bracket", "wall_mount", "static_load", "aluminum"],
+    "reference_solution_exists": true,
+    "expected_score": 0.88
+  },
+  {
+    "task_id": "cad_bracket_002",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "easy",
+    "description": "Design a shelf bracket for 8 kg load at 200 mm extension. PLA 3D printing. Budget: $8.",
+    "requirements": {
+      "load_kg": 8,
+      "extension_mm": 200,
+      "material": "pla",
+      "yield_strength_mpa": 50,
+      "process": "3d_printing",
+      "max_cost_usd": 8,
+      "max_deflection_mm": 5.0,
+      "max_bounding_box_mm": [220, 150, 20]
+    },
+    "grading_criteria": {
+      "weights": {"structural": 0.50, "cost": 0.30, "geometry": 0.20},
+      "dimensions": {}
+    },
+    "tags": ["bracket", "shelf", "3d_print", "pla"],
+    "reference_solution_exists": true,
+    "expected_score": 0.82
+  },
+  {
+    "task_id": "cad_bracket_003",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a motor mount bracket for a 2 kg BLDC motor. Must withstand 15 kg dynamic load with vibration. Steel mild. CNC milling. Budget: $35.",
+    "requirements": {
+      "load_kg": 15,
+      "extension_mm": 80,
+      "material": "steel_mild",
+      "yield_strength_mpa": 250,
+      "process": "cnc_milling",
+      "max_cost_usd": 35,
+      "max_deflection_mm": 1.5,
+      "max_bounding_box_mm": [120, 100, 12]
+    },
+    "grading_criteria": {
+      "weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20},
+      "dimensions": {}
+    },
+    "tags": ["bracket", "motor_mount", "dynamic_load", "steel", "vibration"],
+    "reference_solution_exists": true,
+    "expected_score": 0.85
+  },
+  {
+    "task_id": "cad_bracket_004",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "medium",
+    "description": "Design a camera mount bracket for a 0.5 kg camera at 150 mm extension. Must be stiff (max 0.5 mm deflection). Aluminum 6061-T6. CNC. Budget: $25.",
+    "requirements": {
+      "load_kg": 0.5,
+      "extension_mm": 150,
+      "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276,
+      "process": "cnc_milling",
+      "max_cost_usd": 25,
+      "max_deflection_mm": 0.5,
+      "max_bounding_box_mm": [180, 100, 10]
+    },
+    "grading_criteria": {
+      "weights": {"structural": 0.60, "cost": 0.20, "geometry": 0.20},
+      "dimensions": {}
+    },
+    "tags": ["bracket", "camera_mount", "stiffness_critical", "aluminum"],
+    "reference_solution_exists": true,
+    "expected_score": 0.90
+  },
+  {
+    "task_id": "cad_bracket_005",
+    "domain": "mechanical",
+    "category": "bracket",
+    "difficulty": "hard",
+    "description": "Design a multi-directional bracket that supports 20 kg load at 250 mm extension AND 10 kg lateral load simultaneously. Must operate at -40°C to +85°C without failure. Aluminum 6061-T6. CNC. Budget: $60.",
+    "requirements": {
+      "load_kg": 20,
+      "extension_mm": 250,
+      "lateral_load_kg": 10,
+      "material": "aluminum_6061_t6",
+      "yield_strength_mpa": 276,
+      "process": "cnc_milling",
+      "max_cost_usd": 60,
+      "max_deflection_mm": 2.0,
+      "max_bounding_box_mm": [280, 200, 20],
+      "temp_range_c": [-40, 85]
+    },
+    "grading_criteria": {
+      "weights": {"structural": 0.55, "cost": 0.25, "geometry": 0.20},
+      "dimensions": {}
+    },
+    "tags": ["bracket", "multi_load", "thermal", "aluminum", "advanced"],
+    "reference_solution_exists": true,
+    "expected_score": 0.80
+  }
+]

@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Secrets / API keys
+.env
+.env.local
+*.secret
+
+# Temp simulation files
+/tmp/
+*.stl
+*.step
+*.iges
+*.ccx
+*.frd
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Pro verifier (never commit)
+prodata/*/verifiers/pro/*.py
+!prodata/*/verifiers/pro/__init__.py
+!prodata/*/verifiers/pro/README.md
+
+# Large task datasets (pro tier, not open source)
+tasks/*/pro/
+tasks/*/*_pro.json
