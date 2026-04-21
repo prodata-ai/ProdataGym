@@ -20,16 +20,14 @@ Train AI agents to solve real engineering tasks — mechanical design, RF circui
 
 ### Run in Colab (no local setup)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_GITHUB_USERNAME/prodata-ai/blob/main/examples/cad/01_quickstart.ipynb)
-
-> **Note:** Replace `YOUR_GITHUB_USERNAME` in the badge URL above with your GitHub username after pushing the repo.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/prodata-ai/ProdataGym/blob/main/examples/cad/01_quickstart.ipynb)
 
 ### Install locally
 
 ```bash
 # Clone and install
-git clone https://github.com/YOUR_GITHUB_USERNAME/prodata-ai.git
-cd prodata-ai
+git clone https://github.com/prodata-ai/ProdataGym.git
+cd ProdataGym
 pip install -e ".[cad]"
 ```
 
