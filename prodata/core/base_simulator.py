@@ -32,26 +32,24 @@ class BaseSimulator(ABC):
 
     def _safe_exec(self, code: str, allowed_imports: list[str] | None = None) -> dict:
         """
-        Execute code in a restricted namespace.
-        Returns the populated namespace on success.
-        Raises RuntimeError on execution failure.
+        Execute agent code and return the populated namespace.
+
+        Pre-injects allowed_imports as top-level names so agents can use them
+        without needing an import statement. Full builtins are available —
+        this is NOT a security sandbox. For untrusted code, run in a subprocess.
+
+        Raises RuntimeError on execution failure or missing required variables.
         """
-        import builtins
+        import importlib
 
-        safe_builtins = {
-            k: getattr(builtins, k)
-            for k in ("print", "range", "len", "int", "float", "list", "dict",
-                      "str", "bool", "None", "True", "False", "abs", "min", "max",
-                      "round", "sum", "zip", "enumerate", "sorted")
-        }
+        # Full builtins required: CadQuery (and most domain libs) use import
+        # statements internally that need __import__ to resolve.
+        namespace: dict = {"__builtins__": __builtins__}
 
-        namespace: dict = {"__builtins__": safe_builtins}
-
-        # Allow domain-specific imports explicitly
         if allowed_imports:
             for mod_name in allowed_imports:
-                import importlib
-                namespace[mod_name.split(".")[0]] = importlib.import_module(mod_name)
+                top = mod_name.split(".")[0]
+                namespace[top] = importlib.import_module(mod_name)
 
         try:
             exec(compile(code, "<agent>", "exec"), namespace)

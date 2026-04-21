@@ -9,6 +9,7 @@ from prodata.core.base_verifier import BaseVerifier, VerificationResult
 from prodata.core.base_simulator import SimulationResult
 from prodata.core.task_schema import TaskSpec
 from prodata.core.utils.scoring import weighted_score, linear_score, threshold_score, clamp
+from prodata.cad_gym.task_schema import BracketRequirements
 
 
 class BasicBracketVerifier(BaseVerifier):
@@ -37,7 +38,7 @@ class BasicBracketVerifier(BaseVerifier):
             )
 
         out = sim_result.outputs
-        req = task.requirements
+        req: BracketRequirements = task.requirements
 
         scores = {
             "structural": self._score_structural(out, req),
@@ -63,35 +64,34 @@ class BasicBracketVerifier(BaseVerifier):
 
     # ------------------------------------------------------------------
 
-    def _score_structural(self, out: dict, req) -> float:
+    def _score_structural(self, out: dict, req: BracketRequirements) -> float:
         sf = out.get("safety_factor", 0.0)
         defl = out.get("max_deflection_mm", 999.0)
 
         sf_score = linear_score(sf, target=3.0, worst=0.0)
-        defl_limit = getattr(req, "max_deflection_mm", 5.0)
-        defl_score = threshold_score(defl, threshold=defl_limit, higher_is_better=False)
+        defl_score = threshold_score(defl, threshold=req.max_deflection_mm, higher_is_better=False)
 
         return clamp((sf_score + defl_score) / 2)
 
-    def _score_cost(self, out: dict, req) -> float:
+    def _score_cost(self, out: dict, req: BracketRequirements) -> float:
         total = out.get("total_cost_usd", 999.0)
-        budget = getattr(req, "max_cost_usd", 50.0)
         if total <= 0:
             return 0.0
-        return clamp(budget / total)  # 1.0 if at/under budget, degrades above
+        return clamp(req.max_cost_usd / total)  # 1.0 if at/under budget, degrades above
 
-    def _score_geometry(self, out: dict, req) -> float:
+    def _score_geometry(self, out: dict, req: BracketRequirements) -> float:
         bbox = out.get("bounding_box_mm", [0, 0, 0])
-        max_bbox = getattr(req, "max_bounding_box_mm", [300, 300, 50])
-
-        fits = all(bbox[i] <= max_bbox[i] for i in range(min(len(bbox), len(max_bbox))))
+        fits = all(
+            bbox[i] <= req.max_bounding_box_mm[i]
+            for i in range(min(len(bbox), len(req.max_bounding_box_mm)))
+        )
         return 1.0 if fits else 0.0
 
-    def _collect_warnings(self, out: dict, req) -> list[str]:
+    def _collect_warnings(self, out: dict, req: BracketRequirements) -> list[str]:
         warnings = []
         sf = out.get("safety_factor", 0)
         if sf < 1.5:
             warnings.append(f"Low safety factor: {sf:.2f} (design may fail under load)")
-        if out.get("total_cost_usd", 0) > getattr(req, "max_cost_usd", 50):
+        if out.get("total_cost_usd", 0) > req.max_cost_usd:
             warnings.append(f"Over budget: ${out['total_cost_usd']:.2f}")
         return warnings

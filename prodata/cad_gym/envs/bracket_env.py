@@ -8,6 +8,7 @@ import gymnasium as gym
 from gymnasium import spaces
 
 from prodata.core import ProdataEnv, TaskSpec
+from prodata.cad_gym.task_schema import BracketRequirements, BracketTaskSpec
 from prodata.cad_gym.simulators.mechanical_sim import MechanicalSimulator
 from prodata.cad_gym.verifiers.basic.bracket_verifier import BasicBracketVerifier
 
@@ -45,6 +46,7 @@ class BracketDesignEnv(ProdataEnv):
             verifier_mode=verifier_mode,
             max_steps=max_steps,
             render_mode=render_mode,
+            task_class=BracketTaskSpec,
         )
         self.simulator = MechanicalSimulator()
 
@@ -66,8 +68,8 @@ class BracketDesignEnv(ProdataEnv):
             "cost_usd": spaces.Box(-1, 10000, shape=(1,), dtype=np.float32),
         })
 
-    def _build_observation(self, task: TaskSpec, sim_result: Any) -> dict:
-        req = task.requirements
+    def _build_observation(self, task: BracketTaskSpec, sim_result: Any) -> dict:
+        req: BracketRequirements = task.requirements
         obs = {
             "task_description": task.description,
             "load_kg": np.array([req.load_kg], dtype=np.float32),
