@@ -57,6 +57,10 @@ print(f"Score: {reward:.2f} | Passed: {info['success']}")
 print(f"Dimensions: {info['dimension_scores']}")
 ```
 
+### Bring your own training loop
+
+Plug the environment into PyTorch REINFORCE, TRL GRPO, TRL PPO, or any other framework — see **[docs/INTEGRATION.md](docs/INTEGRATION.md)** for copy-paste patterns.
+
 ---
 
 ## Why Prodata
