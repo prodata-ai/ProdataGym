@@ -97,10 +97,12 @@ class ProdataEnv(gym.Env):
         obs = self._build_observation(self._current_task, sim_result)
         info = {
             "success": verification.passed,
+            "task_id": self._current_task.task_id,
             "dimension_scores": verification.dimension_scores,
             "gaming_detected": verification.gaming_detected,
             "warnings": verification.warnings,
             "step": self._current_step,
+            "mesh_file": sim_result.mesh_file if sim_result else None,
         }
         return obs, reward, terminated, False, info
 
