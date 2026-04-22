@@ -48,8 +48,9 @@ class BasicBracketVerifier(BaseVerifier):
 
         overall = weighted_score(scores, self.WEIGHTS)
         passed = (
-            overall >= 0.7
-            and scores["structural"] >= 0.5  # Must not be structurally failing
+            overall >= 0.80
+            and scores["structural"] >= 0.6
+            and scores["geometry"] == 1.0   # must fit within bounding box
         )
 
         warnings = self._collect_warnings(out, req)
@@ -68,7 +69,17 @@ class BasicBracketVerifier(BaseVerifier):
         sf = out.get("safety_factor", 0.0)
         defl = out.get("max_deflection_mm", 999.0)
 
-        sf_score = linear_score(sf, target=3.0, worst=0.0)
+        # Target: sf in [2, 5]. Under-designed scores low; over-built is also penalised
+        # so the model learns to right-size rather than just maximise thickness.
+        if sf <= 0:
+            sf_score = 0.0
+        elif sf < 2.0:
+            sf_score = sf / 2.0          # rises linearly 0→1 as sf 0→2
+        elif sf <= 5.0:
+            sf_score = 1.0               # sweet spot
+        else:
+            sf_score = min(1.0, 5.0 / sf)  # decays: sf=10→0.5, sf=50→0.1, sf=1000→0.005
+
         defl_score = threshold_score(defl, threshold=req.max_deflection_mm, higher_is_better=False)
 
         return clamp((sf_score + defl_score) / 2)
