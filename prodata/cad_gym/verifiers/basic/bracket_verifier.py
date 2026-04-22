@@ -33,7 +33,7 @@ class BasicBracketVerifier(BaseVerifier):
             return VerificationResult(
                 passed=False,
                 overall_score=0.0,
-                dimension_scores={},
+                dimension_scores={"structural": 0.0, "cost": 0.0, "geometry": 0.0},
                 warnings=[sim_result.error or "Simulation failed"],
             )
 

@@ -81,7 +81,14 @@ class ProdataEnv(gym.Env):
             sim_result, verification = self._run_step(action, self._current_task)
         except Exception as exc:
             obs = self._build_observation(self._current_task, None)
-            return obs, -1.0, True, False, {"error": str(exc), "success": False}
+            return obs, -1.0, True, False, {
+                "error": str(exc),
+                "success": False,
+                "dimension_scores": {},
+                "gaming_detected": False,
+                "warnings": [str(exc)],
+                "step": self._current_step,
+            }
 
         self._last_sim_result = sim_result
         reward = verification.overall_score

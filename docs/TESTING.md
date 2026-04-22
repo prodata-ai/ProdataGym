@@ -289,6 +289,124 @@ Switch to the Pro verifier before long RL runs to avoid this.
 
 ---
 
+## Reward structure for RL training
+
+### The three reward tiers
+
+```
+Code crashes / syntax error / missing `result` variable:   reward = -1.0
+Code runs but design fails verification:                   reward =  0.0 – 0.69
+Code runs and passes all checks:                           reward =  0.70 – 1.0
+```
+
+The intermediate range (0.0–0.69) is a continuous score — the model gets partial credit for
+getting geometry right but failing on cost, etc. This is intentional: it gives a gradient
+to climb rather than a cliff between crash and pass.
+
+### Should you skip weight updates on crashes?
+
+**No — update on everything.** The `reward > -0.5` skip pattern is a mistake for REINFORCE-style training.
+
+Here's why. With REINFORCE the policy gradient is:
+
+```
+loss = -log_prob(action) × reward
+```
+
+When `reward = -1.0` this becomes `loss = log_prob(action)`, which *increases* the probability
+of the action — the opposite of what you want. The fix is to **shift rewards so they are always positive**
+before computing the gradient:
+
+```python
+# CORRECT: shift rewards so minimum is 0
+baseline = -1.0          # the worst possible reward
+shifted_reward = reward - baseline   # maps [-1, 1] → [0, 2]
+
+loss = -outputs.loss * shifted_reward
+loss.backward()
+```
+
+Or use a running mean baseline:
+
+```python
+# CORRECT: subtract running mean
+baseline = np.mean(recent_rewards[-100:])
+advantage = reward - baseline
+
+loss = -outputs.loss * advantage
+loss.backward()
+```
+
+With either approach, update on **all** outcomes including crashes. The crash signal
+(`reward = -1.0`, shifted to 0 or negative advantage) suppresses bad syntax; the
+pass signal (`reward > 0.7`) reinforces good designs.
+
+### HuggingFace generation — avoid conflicting parameters
+
+```python
+# WRONG — causes warnings and unpredictable truncation
+outputs = model.generate(
+    input_ids=inputs["input_ids"],
+    max_new_tokens=300,
+    max_length=2048,        # ← conflicts with max_new_tokens, remove this
+    temperature=0.7,
+    do_sample=True,
+    pad_token_id=tokenizer.pad_token_id
+)
+
+# CORRECT — specify max_new_tokens only
+outputs = model.generate(
+    input_ids=inputs["input_ids"],
+    attention_mask=inputs["attention_mask"],
+    max_new_tokens=300,
+    temperature=0.7,
+    do_sample=True,
+    pad_token_id=tokenizer.pad_token_id
+)
+```
+
+### Expected training curve (TinyLlama / 7B on easy tasks)
+
+```
+Episode  50:   avg reward ≈ -0.25   (many syntax crashes)
+Episode 200:   avg reward ≈  0.15   (fewer crashes, more partial scores)
+Episode 500:   avg reward ≈  0.35   (rare crashes, designs structurally improving)
+```
+
+If average reward stays negative past episode 200, the reward shift is likely wrong
+(model is reinforcing crashes instead of suppressing them).
+
+---
+
+## Troubleshooting
+
+Issues confirmed during Mac/TinyLlama testing and their status in this codebase:
+
+| Issue | Status | Where |
+|-------|--------|-------|
+| `__import__ not found` when executing CadQuery | ✅ Fixed | `base_simulator.py:47` — uses full `__builtins__` |
+| `TypeError: NoneType` from missing return | ✅ Not applicable | Class methods properly structured |
+| `KeyError: 'dimension_scores'` on code crash | ✅ Fixed | `base_env.py` exception path now includes all info keys |
+| `dimension_scores={}` on sim failure → KeyError on access | ✅ Fixed | `bracket_verifier.py` always returns all three keys as 0.0 |
+| numpy dtype warnings (`int64` instead of `float32`) | ✅ Fixed | `bracket_env.py` — all arrays use `dtype=np.float32` |
+
+### Safe pattern for accessing info dict in your training loop
+
+```python
+_, reward, terminated, truncated, info = env.step(code)
+
+# Always safe — dimension_scores is always present and always has all three keys
+structural = info["dimension_scores"].get("structural", 0.0)
+cost       = info["dimension_scores"].get("cost", 0.0)
+geometry   = info["dimension_scores"].get("geometry", 0.0)
+
+# Check for execution error
+if "error" in info:
+    print(f"Code failed: {info['error']}")
+```
+
+---
+
 ## Full evaluation script
 
 See `examples/cad/02_run_benchmark.py` for a command-line harness that:
