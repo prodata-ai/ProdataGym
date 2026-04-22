@@ -84,10 +84,12 @@ class ProdataEnv(gym.Env):
             return obs, -1.0, True, False, {
                 "error": str(exc),
                 "success": False,
-                "dimension_scores": {},
+                "task_id": self._current_task.task_id,
+                "dimension_scores": {"structural": 0.0, "cost": 0.0, "geometry": 0.0},
                 "gaming_detected": False,
                 "warnings": [str(exc)],
                 "step": self._current_step,
+                "mesh_file": None,
             }
 
         self._last_sim_result = sim_result
