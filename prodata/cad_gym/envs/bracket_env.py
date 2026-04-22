@@ -75,7 +75,7 @@ class BracketDesignEnv(ProdataEnv):
             "load_kg": np.array([req.load_kg], dtype=np.float32),
             "extension_mm": np.array([req.extension_mm], dtype=np.float32),
             "max_cost_usd": np.array([req.max_cost_usd], dtype=np.float32),
-            "step": self._current_step,
+            "step": np.int64(self._current_step),
             "safety_factor": np.array([-1.0], dtype=np.float32),
             "cost_usd": np.array([-1.0], dtype=np.float32),
         }
