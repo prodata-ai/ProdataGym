@@ -384,26 +384,48 @@ class TrainingVisualizer:
 
         try:
             mesh = trimesh.load(stl_path)
+            mesh = mesh.subdivide()          # smoother edges, less blocky triangles
+
             v, f = mesh.vertices, mesh.faces
-            fig = go.Figure(data=[go.Mesh3d(
+
+            fig = go.Figure()
+
+            # Flat-shaded surface — no specular highlights or reflections
+            fig.add_trace(go.Mesh3d(
                 x=v[:, 0], y=v[:, 1], z=v[:, 2],
                 i=f[:, 0], j=f[:, 1], k=f[:, 2],
-                color=color, opacity=0.85,
-                lighting=dict(ambient=0.4, diffuse=0.8, roughness=0.5,
-                              specular=0.3, fresnel=0.2),
-            )])
+                color=color,
+                opacity=0.25,
+                flatshading=True,
+                lighting=dict(ambient=1.0, diffuse=0.1, specular=0.0),
+                showscale=False,
+            ))
+
+            # Wireframe overlay — shows the actual geometry cleanly
+            edges = mesh.edges_unique
+            xe, ye, ze = [], [], []
+            for e in edges:
+                xe += [v[e[0], 0], v[e[1], 0], None]
+                ye += [v[e[0], 1], v[e[1], 1], None]
+                ze += [v[e[0], 2], v[e[1], 2], None]
+
+            fig.add_trace(go.Scatter3d(
+                x=xe, y=ye, z=ze,
+                mode="lines",
+                line=dict(color="steelblue", width=1),
+                hoverinfo="skip",
+            ))
+
             fig.update_layout(
                 title=title,
                 scene=dict(
                     xaxis_title="X (mm)", yaxis_title="Y (mm)", zaxis_title="Z (mm)",
                     aspectmode="data",
                     camera=dict(eye=dict(x=1.6, y=1.6, z=1.2)),
-                    bgcolor="rgba(20,20,30,1)",
                 ),
                 width=640, height=480,
                 margin=dict(l=0, r=0, t=50, b=0),
-                paper_bgcolor="rgba(20,20,30,1)",
-                font=dict(color="white"),
+                showlegend=False,
             )
             fig.show()
         except Exception as e:
