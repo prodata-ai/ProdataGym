@@ -277,8 +277,11 @@ class ElectrochemicalSimulator(BaseSimulator):
         cutoff = cfg["discharge_cutoff_v"]
         charge_v = cfg["charge_cutoff_v"]
 
-        # SPM with lumped thermal
-        model = pybamm.lithium_ion.SPM(options={"thermal": "lumped"})
+        # Lumped thermal works for Chen2020 (NMC/NCA); Prada2013 (LFP) lacks the
+        # current collector thermal parameters required by lumped thermal, so we
+        # fall back to isothermal for LFP (peak temp reported as ambient).
+        thermal_opt = "isothermal" if cfg["param_set"] == "Prada2013" else "lumped"
+        model = pybamm.lithium_ion.SPM(options={"thermal": thermal_opt})
 
         experiment = pybamm.Experiment([
             f"Discharge at {c_rate_discharge}C until {cutoff} V",
@@ -324,10 +327,16 @@ class ElectrochemicalSimulator(BaseSimulator):
             "Negative particle radius [m]":           "negative_electrode_particle_radius",
             "Positive electrode thickness [m]":       "positive_electrode_thickness",
             "Positive electrode porosity":            "positive_electrode_porosity",
-            "Positive particle radius [m]":           "positive_electrode_particle_radius",
             "Separator thickness [m]":                "separator_thickness",
             "Separator porosity":                     "separator_porosity",
         }
+        # LFP (Prada2013) uses ~50 nm nanoparticles for the positive electrode.
+        # Overriding to µm-scale particles collapses capacity by 100×, so we skip
+        # positive particle radius for LFP and let PyBaMM use its calibrated value.
+        chem = params.get("chemistry", "NMC532")
+        if chem != "LFP":
+            overrides["Positive particle radius [m]"] = "positive_electrode_particle_radius"
+
         for pybamm_key, param_key in overrides.items():
             try:
                 param_values[pybamm_key] = float(params[param_key])
@@ -348,6 +357,11 @@ class ElectrochemicalSimulator(BaseSimulator):
         self, sol, params: dict, chemistry: str
     ) -> tuple[float, float]:
         """Discharge energy (Wh) / cell mass (kg) = Wh/kg."""
+        # np.trapz was renamed to np.trapezoid in NumPy 2.0
+        try:
+            _trapz = np.trapezoid
+        except AttributeError:
+            _trapz = np.trapz  # type: ignore[attr-defined]
         try:
             discharge_step = sol.cycles[0].steps[0]
             time_s = discharge_step["Time [s]"].entries
@@ -355,12 +369,15 @@ class ElectrochemicalSimulator(BaseSimulator):
             current_a = discharge_step["Current [A]"].entries
             capacity_ah = float(discharge_step["Discharge capacity [A.h]"].entries[-1])
 
-            # Energy in Wh (current > 0 during discharge in PyBaMM convention)
-            energy_wh = float(np.trapz(voltage_v * current_a, time_s) / 3600.0)
+            # Energy in Wh — current is positive during discharge in PyBaMM convention
+            energy_wh = float(abs(_trapz(voltage_v * current_a, time_s)) / 3600.0)
         except Exception:
-            # Fallback using max capacity and nominal voltage
-            capacity_ah = float(sol["Discharge capacity [A.h]"].entries.max())
-            nominal_v = 3.65 if chemistry == "LFP" else 3.7
+            # Fallback: get capacity from discharge step directly
+            try:
+                capacity_ah = float(sol.cycles[0].steps[0]["Discharge capacity [A.h]"].entries[-1])
+            except Exception:
+                capacity_ah = float(sol["Discharge capacity [A.h]"].entries.max())
+            nominal_v = 3.2 if chemistry == "LFP" else 3.7
             energy_wh = capacity_ah * nominal_v
 
         cell_mass_kg = self._compute_cell_mass(params, chemistry)

@@ -45,6 +45,7 @@ battery = [
     "pandas>=2.0",
     "scipy>=1.11",
     "matplotlib>=3.7",
+    "pyarrow>=14.0",
 ]
 dev = [
     "pytest>=7.0",

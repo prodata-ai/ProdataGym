@@ -25,16 +25,19 @@ Usage:
                    dataset_path="data/battery_dataset_10k.parquet")
 
 Parameter ranges sampled (Latin Hypercube):
-    negative_electrode_thickness    [20, 200] µm
-    negative_electrode_porosity     [0.10, 0.65]
-    negative_electrode_particle_radius  [0.5, 20] µm
-    positive_electrode_thickness    [20, 180] µm
-    positive_electrode_porosity     [0.10, 0.65]
-    positive_electrode_particle_radius  [0.5, 15] µm
-    separator_thickness             [10, 60] µm
-    separator_porosity              [0.25, 0.70]
-    c_rate_discharge                [0.5, 3.0]
-    ambient_temperature_celsius     [-20, 45]
+    negative_electrode_thickness    [40, 150] µm
+    negative_electrode_porosity     [0.15, 0.55]
+    negative_electrode_particle_radius  [1, 12] µm
+    positive_electrode_thickness    [40, 130] µm
+    positive_electrode_porosity     [0.15, 0.55]
+    positive_electrode_particle_radius  [1, 12] µm
+    separator_thickness             [15, 50] µm
+    separator_porosity              [0.30, 0.60]
+    c_rate_discharge                [0.5, 2.0]
+    ambient_temperature_celsius     [-10, 45]
+
+Ranges are tighter than full physical space to keep PyBaMM success rate >90%.
+Extreme combos (ultra-thin electrodes + high C-rate + cold temp) cause infeasible sims.
 
 Chemistry: NMC532 (60%), LFP (40%)
 """
@@ -68,28 +71,28 @@ PARAM_NAMES = [
 ]
 
 PARAM_LO = np.array([
-    20e-6,   # neg thickness m
-    0.10,    # neg porosity
-    0.5e-6,  # neg particle radius m
-    20e-6,   # pos thickness m
-    0.10,    # pos porosity
-    0.5e-6,  # pos particle radius m
-    10e-6,   # sep thickness m
-    0.25,    # sep porosity
+    40e-6,   # neg thickness m  (20 µm too thin — PyBaMM infeasible)
+    0.15,    # neg porosity      (0.10 causes infeasible ionic transport)
+    1.0e-6,  # neg particle radius m
+    40e-6,   # pos thickness m
+    0.15,    # pos porosity
+    1.0e-6,  # pos particle radius m
+    15e-6,   # sep thickness m   (10 µm causes convergence issues)
+    0.30,    # sep porosity
     0.5,     # c_rate_discharge
-    -20.0,   # ambient temp °C
+    -10.0,   # ambient temp °C   (-20 + high C-rate → infeasible; -10 safe)
 ])
 
 PARAM_HI = np.array([
-    200e-6,  # neg thickness m
-    0.65,    # neg porosity
-    20e-6,   # neg particle radius m
-    180e-6,  # pos thickness m
-    0.65,    # pos porosity
-    15e-6,   # pos particle radius m
-    60e-6,   # sep thickness m
-    0.70,    # sep porosity
-    3.0,     # c_rate_discharge
+    150e-6,  # neg thickness m   (>150 µm adds mass without benefit)
+    0.55,    # neg porosity       (0.65 causes infeasible at high C-rate)
+    12e-6,   # neg particle radius m
+    130e-6,  # pos thickness m
+    0.55,    # pos porosity
+    12e-6,   # pos particle radius m
+    50e-6,   # sep thickness m
+    0.60,    # sep porosity
+    2.0,     # c_rate_discharge   (3.0 C at cold temp → infeasible)
     45.0,    # ambient temp °C
 ])
 
@@ -215,8 +218,9 @@ def precompute_dataset(
     chemistries = ["NMC532"] * n_nmc + ["LFP"] * (n_samples - n_nmc)
     rng.shuffle(chemistries)
 
-    # C-rate for charging: sample independently [0.5, 4.0]
-    c_rates_charge = rng.uniform(0.5, 4.0, size=n_samples)
+    # C-rate for charging: sample independently [0.5, 2.5]
+    # Cap at 2.5C — higher rates at cold temps cause PyBaMM to fail
+    c_rates_charge = rng.uniform(0.5, 2.5, size=n_samples)
 
     # Build argument list for workers
     work_items = []
