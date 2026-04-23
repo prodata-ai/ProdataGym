@@ -2,7 +2,7 @@
 
 **RL training environments and verifiers for engineering design agents.**
 
-Train AI agents to solve real engineering tasks — mechanical design, RF circuits, solar systems — with multi-dimensional verification that catches reward hacking.
+Train AI agents to solve real engineering tasks — mechanical design, battery cells, RF circuits, solar systems — with multi-dimensional verification that catches reward hacking.
 
 ---
 
@@ -11,6 +11,7 @@ Train AI agents to solve real engineering tasks — mechanical design, RF circui
 | Domain | Status | Install | Benchmark |
 |--------|--------|---------|-----------|
 | [CAD / Mechanical](prodata/cad_gym/) | ✅ Active | `pip install prodata[cad]` | [Leaderboard](benchmarks/cad_leaderboard.md) |
+| [Battery / Electrochemistry](prodata/battery_gym/) | ✅ Active | `pip install prodata[battery]` | [Leaderboard](benchmarks/battery_leaderboard.md) |
 | [Solar / Photovoltaics](prodata/solar_gym/) | 🚧 Coming soon | `pip install prodata[solar]` | — |
 | [RF Engineering](prodata/rf_gym/) | 🚧 Coming soon | `pip install prodata[rf]` | — |
 

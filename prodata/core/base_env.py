@@ -60,9 +60,15 @@ class ProdataEnv(gym.Env):
         super().reset(seed=seed)
 
         if options and "task_id" in options:
-            self._current_task = next(
-                t for t in self._tasks if t.task_id == options["task_id"]
-            )
+            task_id = options["task_id"]
+            matched = [t for t in self._tasks if t.task_id == task_id]
+            if not matched:
+                valid = [t.task_id for t in self._tasks]
+                raise ValueError(
+                    f"Unknown task_id {task_id!r}. "
+                    f"Valid IDs: {valid}"
+                )
+            self._current_task = matched[0]
         else:
             self._current_task = self.np_random.choice(self._tasks)
 

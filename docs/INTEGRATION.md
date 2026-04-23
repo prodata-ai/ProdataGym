@@ -317,6 +317,105 @@ for batch_idx in range(200):
 
 ---
 
+## Memory-efficient training on Colab / consumer GPUs
+
+Running 7B+ models without OOM requires three techniques stacked together.
+Without them, a 7B model needs ~28 GB VRAM. With all three, it fits in ~7 GB.
+
+### Stack: Unsloth 4-bit + LoRA + gradient checkpointing
+
+```bash
+pip install --upgrade --no-cache-dir "unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git"
+pip install trl datasets
+```
+
+```python
+from unsloth import FastLanguageModel
+
+# 1. Load in 4-bit (NF4 quantisation — halves VRAM vs fp16, no quality loss)
+model, tokenizer = FastLanguageModel.from_pretrained(
+    model_name     = "unsloth/Qwen2.5-Coder-7B-Instruct-bnb-4bit",
+    max_seq_length = 1024,
+    load_in_4bit   = True,
+    dtype          = None,      # auto: bf16 on Ampere, fp16 on older
+)
+
+# 2. Add LoRA adapters — only ~40M of 7B params get gradient updates
+#    Optimizer state: ~0.3 GB instead of ~28 GB
+model = FastLanguageModel.get_peft_model(
+    model,
+    r              = 16,        # LoRA rank: 8–32 is typical
+    target_modules = ["q_proj", "k_proj", "v_proj", "o_proj",
+                      "gate_proj", "up_proj", "down_proj"],
+    lora_alpha     = 16,
+    lora_dropout   = 0,         # 0 = Unsloth recommendation
+    bias           = "none",
+    # 3. Gradient checkpointing — Unsloth's patched version saves 30% more
+    #    VRAM than HF's built-in by recomputing activations instead of storing
+    use_gradient_checkpointing = "unsloth",
+)
+
+# Optimizer: only LoRA params (~40M), not full model (7B)
+from torch.optim import AdamW
+optimizer = AdamW(
+    [p for p in model.parameters() if p.requires_grad],
+    lr=2e-4, weight_decay=0.01,
+)
+```
+
+**Switch between training and inference:**
+```python
+FastLanguageModel.for_training(model)   # enable LoRA grads
+FastLanguageModel.for_inference(model)  # 2x faster inference
+```
+
+**Save only the adapter (~80 MB, not 14 GB):**
+```python
+model.save_pretrained("my_lora_adapter")
+tokenizer.save_pretrained("my_lora_adapter")
+# Merge to full fp16 model for deployment:
+# model.save_pretrained_merged("merged_model", tokenizer, save_method="merged_16bit")
+```
+
+### VRAM budget for T4 (16 GB) with Unsloth + LoRA
+
+| Component | VRAM |
+|-----------|------|
+| 4-bit base weights (7B) | ~4 GB |
+| LoRA adapter fp16 (r=16) | ~0.3 GB |
+| Activations (checkpointed) | ~2–3 GB |
+| Optimizer state (LoRA only) | ~0.6 GB |
+| **Total** | **~7–8 GB** |
+
+### Battery gym: use dataset mode during training
+
+Live PyBaMM takes ~3 s/step. Pre-compute the dataset once and use KDTree lookup (~1 ms/step):
+
+```bash
+python -m prodata.battery_gym.scripts.precompute_dataset \
+    --samples 10000 --workers 8 \
+    --output data/battery_dataset_10k.parquet
+```
+
+```python
+env = gym.make("prodata/CellDesign-v0",
+               mode="dataset",
+               dataset_path="data/battery_dataset_10k.parquet")
+```
+
+### Quick Colab reference
+
+| Model | VRAM (Unsloth 4-bit + LoRA r=16) | T4 (16 GB) | A100 (40 GB) |
+|-------|----------------------------------|-----------|-------------|
+| Qwen2.5-Coder-1.5B | ~1.5 GB | ✅ | ✅ |
+| Qwen2.5-Coder-7B | ~7 GB | ✅ | ✅ |
+| Qwen2.5-Coder-14B | ~9 GB | ⚠️ tight | ✅ |
+| Qwen2.5-Coder-32B | ~20 GB | ❌ | ✅ |
+
+Full working notebooks: `examples/cad/02_colab_training_viz.ipynb` | `examples/battery/03_colab_rl_training.ipynb`
+
+---
+
 ## Scaling up
 
 **Run on your own GPU cluster:**

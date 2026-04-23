@@ -9,7 +9,7 @@ description = "RL environments and verifiers for engineering design agents"
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
-keywords = ["reinforcement-learning", "gymnasium", "cad", "engineering", "rl-environments"]
+keywords = ["reinforcement-learning", "gymnasium", "cad", "battery", "engineering", "rl-environments"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Science/Research",
@@ -40,6 +40,12 @@ rf = [
     "scikit-rf>=1.0",
     "numpy>=1.24",
 ]
+battery = [
+    "pybamm>=24.0",
+    "pandas>=2.0",
+    "scipy>=1.11",
+    "matplotlib>=3.7",
+]
 dev = [
     "pytest>=7.0",
     "pytest-cov",
@@ -51,6 +57,7 @@ all = [
     "prodata[cad]",
     "prodata[solar]",
     "prodata[rf]",
+    "prodata[battery]",
 ]
 
 [project.urls]

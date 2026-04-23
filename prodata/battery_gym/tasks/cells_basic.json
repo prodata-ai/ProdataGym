@@ -1,0 +1,692 @@
+[
+  {
+    "task_id": "cell_ev_commuter_001",
+    "domain": "battery",
+    "category": "ev_traction",
+    "difficulty": "easy",
+    "description": "Design an NMC battery cell for a city EV commuter application. Target 220 Wh/kg energy density with at least 600 cycles to 80% capacity. Peak cell temperature must stay below 45°C during 1C charge and discharge. Budget: $100/kWh. The cell uses standard 21700 cylindrical form factor.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 220.0,
+      "min_cycle_life": 600,
+      "max_peak_temp_c": 45.0,
+      "max_cost_kwh": 100.0,
+      "c_rate_charge": 1.0,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.30, "cycle_life": 0.35, "thermal": 0.20, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["ev", "nmc", "commuter"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_ev_standard_001",
+    "domain": "battery",
+    "category": "ev_traction",
+    "difficulty": "easy",
+    "description": "Design an NMC battery cell for a standard mid-range EV. Target 250 Wh/kg with 800 cycle life. Peak temperature below 45°C at 1C/1C operation. Cell cost must be under $100/kWh at cell level.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 250.0,
+      "min_cycle_life": 800,
+      "max_peak_temp_c": 45.0,
+      "max_cost_kwh": 100.0,
+      "c_rate_charge": 1.0,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.30, "cycle_life": 0.35, "thermal": 0.20, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["ev", "nmc", "standard"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_consumer_phone_001",
+    "domain": "battery",
+    "category": "consumer_electronics",
+    "difficulty": "easy",
+    "description": "Design an NMC cell for a smartphone. Energy density target: 230 Wh/kg. Cycle life: 500 cycles (typical 2-year phone use pattern). Slow 0.5C charge profile. Peak temperature must not exceed 50°C to avoid user discomfort.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 230.0,
+      "min_cycle_life": 500,
+      "max_peak_temp_c": 50.0,
+      "max_cost_kwh": 120.0,
+      "c_rate_charge": 0.5,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.30, "cycle_life": 0.35, "thermal": 0.20, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["consumer", "nmc", "phone"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_grid_storage_basic_001",
+    "domain": "battery",
+    "category": "grid_storage",
+    "difficulty": "easy",
+    "description": "Design an LFP cell for a basic grid energy storage system. LFP is required for safety and long life. Target 140 Wh/kg with at least 2000 cycles to 80% capacity. Slow 0.5C charge/discharge. Budget: $80/kWh.",
+    "requirements": {
+      "chemistry": "LFP",
+      "target_energy_density_whkg": 140.0,
+      "min_cycle_life": 2000,
+      "max_peak_temp_c": 55.0,
+      "max_cost_kwh": 80.0,
+      "c_rate_charge": 0.5,
+      "c_rate_discharge": 0.5,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.25, "cycle_life": 0.40, "thermal": 0.20, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["grid", "lfp", "long-life"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_ebike_001",
+    "domain": "battery",
+    "category": "micromobility",
+    "difficulty": "easy",
+    "description": "Design an LFP cell for an electric bicycle battery pack. Target 145 Wh/kg with 1000 cycle life. E-bike riders charge daily; thermal management is minimal, so keep peak temperature below 50°C.",
+    "requirements": {
+      "chemistry": "LFP",
+      "target_energy_density_whkg": 145.0,
+      "min_cycle_life": 1000,
+      "max_peak_temp_c": 50.0,
+      "max_cost_kwh": 90.0,
+      "c_rate_charge": 1.0,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.30, "cycle_life": 0.35, "thermal": 0.20, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["micromobility", "lfp", "ebike"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_escooter_001",
+    "domain": "battery",
+    "category": "micromobility",
+    "difficulty": "easy",
+    "description": "Design an LFP cell for a shared e-scooter fleet. Fleet operators require 1500 cycles minimum due to high utilisation. Target 140 Wh/kg at 1C operation. Budget critical: must be under $85/kWh.",
+    "requirements": {
+      "chemistry": "LFP",
+      "target_energy_density_whkg": 140.0,
+      "min_cycle_life": 1500,
+      "max_peak_temp_c": 50.0,
+      "max_cost_kwh": 85.0,
+      "c_rate_charge": 1.0,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.25, "cycle_life": 0.40, "thermal": 0.20, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["micromobility", "lfp", "fleet"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_laptop_001",
+    "domain": "battery",
+    "category": "consumer_electronics",
+    "difficulty": "easy",
+    "description": "Design an NMC cell for a professional laptop. Target 220 Wh/kg with 600 cycle life (3 years daily use). Slow 0.5C charge. Peak temperature below 45°C is critical — thermal throttling at 45°C harms performance.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 220.0,
+      "min_cycle_life": 600,
+      "max_peak_temp_c": 45.0,
+      "max_cost_kwh": 110.0,
+      "c_rate_charge": 0.5,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.30, "cycle_life": 0.35, "thermal": 0.20, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["consumer", "nmc", "laptop"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_power_tool_001",
+    "domain": "battery",
+    "category": "industrial",
+    "difficulty": "easy",
+    "description": "Design an NMC cell for a cordless power tool. High discharge rate 2C is normal. Cycle life 400 cycles is acceptable (tools are replaced periodically). Temperature limit 55°C — tools operate in warm environments. Energy density 200 Wh/kg minimum.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 200.0,
+      "min_cycle_life": 400,
+      "max_peak_temp_c": 55.0,
+      "max_cost_kwh": 110.0,
+      "c_rate_charge": 2.0,
+      "c_rate_discharge": 2.0,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.30, "cycle_life": 0.30, "thermal": 0.25, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["industrial", "nmc", "high-rate"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_drone_001",
+    "domain": "battery",
+    "category": "uav",
+    "difficulty": "easy",
+    "description": "Design an NMC cell for a delivery drone. Weight is critical — target 240 Wh/kg. Cycle life requirement is modest (200 cycles) since drones are maintained frequently. Fast 2C discharge to deliver peak power for takeoff. Temperature limit 55°C.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 240.0,
+      "min_cycle_life": 200,
+      "max_peak_temp_c": 55.0,
+      "max_cost_kwh": 120.0,
+      "c_rate_charge": 1.0,
+      "c_rate_discharge": 2.0,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.40, "cycle_life": 0.20, "thermal": 0.25, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["uav", "nmc", "weight-critical"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_home_backup_001",
+    "domain": "battery",
+    "category": "grid_storage",
+    "difficulty": "easy",
+    "description": "Design an LFP cell for a home solar-plus-storage system. Target 135 Wh/kg with 2500 cycle life (10-year product life, once-daily cycling). Cost is the primary driver: must be under $75/kWh. Slow 0.5C charge from solar panels.",
+    "requirements": {
+      "chemistry": "LFP",
+      "target_energy_density_whkg": 135.0,
+      "min_cycle_life": 2500,
+      "max_peak_temp_c": 50.0,
+      "max_cost_kwh": 75.0,
+      "c_rate_charge": 0.5,
+      "c_rate_discharge": 0.5,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.20, "cycle_life": 0.40, "thermal": 0.15, "cost": 0.25},
+      "dimensions": {}
+    },
+    "tags": ["grid", "lfp", "home-storage", "cost-sensitive"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_ev_fastcharge_001",
+    "domain": "battery",
+    "category": "ev_traction",
+    "difficulty": "medium",
+    "description": "Design an NMC cell for a fast-charge capable EV. 3C DC fast charging is the primary challenge — this stresses the negative electrode and raises temperature significantly. Target 260 Wh/kg with 800 cycle life. Peak temperature must stay below 40°C during fast charge (active cooling assumed). High C-rate charging requires careful electrode design to avoid lithium plating.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 260.0,
+      "min_cycle_life": 800,
+      "max_peak_temp_c": 40.0,
+      "max_cost_kwh": 100.0,
+      "c_rate_charge": 3.0,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.25, "cycle_life": 0.35, "thermal": 0.30, "cost": 0.10},
+      "dimensions": {}
+    },
+    "tags": ["ev", "nmc", "fast-charge", "thermal-critical"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_grid_longlife_001",
+    "domain": "battery",
+    "category": "grid_storage",
+    "difficulty": "medium",
+    "description": "Design an LFP cell for a utility-scale grid storage system operating for 20 years. 5000 cycles to 80% capacity is required (once-daily cycling). Target 155 Wh/kg. Slow 0.5C charge/discharge. Cost budget: $70/kWh — competitive with pumped hydro.",
+    "requirements": {
+      "chemistry": "LFP",
+      "target_energy_density_whkg": 155.0,
+      "min_cycle_life": 5000,
+      "max_peak_temp_c": 50.0,
+      "max_cost_kwh": 70.0,
+      "c_rate_charge": 0.5,
+      "c_rate_discharge": 0.5,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.20, "cycle_life": 0.45, "thermal": 0.15, "cost": 0.20},
+      "dimensions": {}
+    },
+    "tags": ["grid", "lfp", "ultra-long-life"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_ev_coldweather_001",
+    "domain": "battery",
+    "category": "ev_traction",
+    "difficulty": "medium",
+    "description": "Design an NMC cell for EVs operated in cold climates (Norway, Canada, Russia). Ambient temperature is -20°C during operation. At low temperature, lithium plating during charging is a critical failure mode — C-rate is limited to 0.5C. Target 240 Wh/kg with 700 cycle life. Peak temperature limit 40°C. Low-temperature ion transport is the key design challenge.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 240.0,
+      "min_cycle_life": 700,
+      "max_peak_temp_c": 40.0,
+      "max_cost_kwh": 110.0,
+      "c_rate_charge": 0.5,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": -20.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.25, "cycle_life": 0.35, "thermal": 0.25, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["ev", "nmc", "cold-weather", "plating-risk"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_ev_premium_001",
+    "domain": "battery",
+    "category": "ev_traction",
+    "difficulty": "medium",
+    "description": "Design an NMC cell for a premium long-range EV (500+ km range). Target 270 Wh/kg — pushing the energy density boundary for NMC532. 1000 cycle life required (8-year warranty). Peak temperature below 42°C. Cost up to $110/kWh is acceptable for the premium segment.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 270.0,
+      "min_cycle_life": 1000,
+      "max_peak_temp_c": 42.0,
+      "max_cost_kwh": 110.0,
+      "c_rate_charge": 1.0,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.35, "cycle_life": 0.30, "thermal": 0.20, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["ev", "nmc", "premium", "long-range"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_marine_001",
+    "domain": "battery",
+    "category": "marine",
+    "difficulty": "medium",
+    "description": "Design an NMC cell for an electric boat propulsion system. Ambient temperature 30°C (warm coastal waters). Target 245 Wh/kg with 1000 cycle life. Marine applications require robust thermal management — peak temp below 45°C. 1C operation.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 245.0,
+      "min_cycle_life": 1000,
+      "max_peak_temp_c": 45.0,
+      "max_cost_kwh": 120.0,
+      "c_rate_charge": 1.0,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 30.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.30, "cycle_life": 0.35, "thermal": 0.20, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["marine", "nmc", "propulsion"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_forklift_001",
+    "domain": "battery",
+    "category": "industrial",
+    "difficulty": "medium",
+    "description": "Design an LFP cell for an industrial electric forklift. Forklifts operate in warm warehouses (35°C ambient) with opportunity charging throughout the day. 3000 cycle life required (15-year fleet operation). Target 145 Wh/kg. Cost critical: $80/kWh.",
+    "requirements": {
+      "chemistry": "LFP",
+      "target_energy_density_whkg": 145.0,
+      "min_cycle_life": 3000,
+      "max_peak_temp_c": 55.0,
+      "max_cost_kwh": 80.0,
+      "c_rate_charge": 0.5,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 35.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.20, "cycle_life": 0.45, "thermal": 0.20, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["industrial", "lfp", "forklift"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_residential_solar_001",
+    "domain": "battery",
+    "category": "grid_storage",
+    "difficulty": "medium",
+    "description": "Design an LFP cell for a residential solar-plus-storage system targeting a 15-year product life. 4000 cycles to 80% retention required. Target 155 Wh/kg. Cost must be under $75/kWh to compete in the home storage market. System sits in a garage — ambient up to 35°C in summer.",
+    "requirements": {
+      "chemistry": "LFP",
+      "target_energy_density_whkg": 155.0,
+      "min_cycle_life": 4000,
+      "max_peak_temp_c": 50.0,
+      "max_cost_kwh": 75.0,
+      "c_rate_charge": 0.5,
+      "c_rate_discharge": 0.5,
+      "ambient_temp_c": 35.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.20, "cycle_life": 0.40, "thermal": 0.15, "cost": 0.25},
+      "dimensions": {}
+    },
+    "tags": ["grid", "lfp", "residential", "solar"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_ev_hotclimate_001",
+    "domain": "battery",
+    "category": "ev_traction",
+    "difficulty": "medium",
+    "description": "Design an NMC cell for EVs in hot climates (Middle East, South Asia, Australia). Ambient 45°C is the operating condition — the hardest thermal challenge for NMC. Target 245 Wh/kg with 800 cycle life. Peak temperature limit 50°C means only 5°C headroom. Electrode design must minimise heat generation.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 245.0,
+      "min_cycle_life": 800,
+      "max_peak_temp_c": 50.0,
+      "max_cost_kwh": 100.0,
+      "c_rate_charge": 1.0,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 45.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.25, "cycle_life": 0.30, "thermal": 0.30, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["ev", "nmc", "hot-climate", "thermal-critical"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_medical_device_001",
+    "domain": "battery",
+    "category": "medical",
+    "difficulty": "medium",
+    "description": "Design an LFP cell for an implant-adjacent medical device (external wearable monitor). Body-temperature environment: 37°C. Ultra-slow 0.3C charge for patient safety. 2000 cycle life required (5+ years). Temperature strictly below 40°C — any higher risks patient discomfort. High cost tolerance: $200/kWh is acceptable for medical-grade.",
+    "requirements": {
+      "chemistry": "LFP",
+      "target_energy_density_whkg": 148.0,
+      "min_cycle_life": 2000,
+      "max_peak_temp_c": 40.0,
+      "max_cost_kwh": 200.0,
+      "c_rate_charge": 0.3,
+      "c_rate_discharge": 0.5,
+      "ambient_temp_c": 37.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.20, "cycle_life": 0.30, "thermal": 0.40, "cost": 0.10},
+      "dimensions": {}
+    },
+    "tags": ["medical", "lfp", "body-temperature", "safety-critical"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_autonomous_robot_001",
+    "domain": "battery",
+    "category": "robotics",
+    "difficulty": "medium",
+    "description": "Design an LFP cell for an autonomous warehouse robot. Robots operate 20 hours/day with frequent opportunity charging (1C). 2500 cycle life required. Target 148 Wh/kg. Robots operate in 35°C warehouse environments. Cost target: $90/kWh.",
+    "requirements": {
+      "chemistry": "LFP",
+      "target_energy_density_whkg": 148.0,
+      "min_cycle_life": 2500,
+      "max_peak_temp_c": 50.0,
+      "max_cost_kwh": 90.0,
+      "c_rate_charge": 1.0,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 35.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.25, "cycle_life": 0.40, "thermal": 0.20, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["robotics", "lfp", "industrial"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_aerospace_001",
+    "domain": "battery",
+    "category": "aerospace",
+    "difficulty": "hard",
+    "description": "Design an NMC cell for an electric aircraft. Weight is existential — every gram of battery weight that does not contribute energy is wasted payload. Target 290 Wh/kg (pushing the theoretical limit for NMC532). 500 cycle life is acceptable for aviation maintenance schedules. Peak temperature below 35°C (no active cooling at altitude). Budget is flexible at $300/kWh. The electrode design must simultaneously maximise energy density and minimise dead weight.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 290.0,
+      "min_cycle_life": 500,
+      "max_peak_temp_c": 35.0,
+      "max_cost_kwh": 300.0,
+      "c_rate_charge": 1.0,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 20.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.50, "cycle_life": 0.20, "thermal": 0.25, "cost": 0.05},
+      "dimensions": {}
+    },
+    "tags": ["aerospace", "nmc", "weight-critical", "hard"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_formula_e_001",
+    "domain": "battery",
+    "category": "motorsport",
+    "difficulty": "hard",
+    "description": "Design an NMC cell for Formula E motorsport. Extreme 4C fast charge during 'Attack Mode' and pit stops. 4C discharge for peak power. 300 cycle life is acceptable for a race season. Energy density 285 Wh/kg required. Peak temperature must stay below 35°C — thermal runaway at racing speeds is catastrophic. This task requires balancing particle kinetics, porosity, and thickness for extreme rate capability.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 285.0,
+      "min_cycle_life": 300,
+      "max_peak_temp_c": 35.0,
+      "max_cost_kwh": 200.0,
+      "c_rate_charge": 4.0,
+      "c_rate_discharge": 4.0,
+      "ambient_temp_c": 30.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.35, "cycle_life": 0.15, "thermal": 0.40, "cost": 0.10},
+      "dimensions": {}
+    },
+    "tags": ["motorsport", "nmc", "extreme-rate", "thermal-critical", "hard"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_grid_ultralong_001",
+    "domain": "battery",
+    "category": "grid_storage",
+    "difficulty": "hard",
+    "description": "Design an LFP cell for a 25-year utility grid storage asset. 8000 cycles to 80% retention is the target — one of the most demanding cycle life specifications in the industry. Target 158 Wh/kg. Slow 0.3C. Cost must be under $60/kWh to be competitive with pumped hydro. Every parameter choice has multi-decade implications.",
+    "requirements": {
+      "chemistry": "LFP",
+      "target_energy_density_whkg": 158.0,
+      "min_cycle_life": 8000,
+      "max_peak_temp_c": 50.0,
+      "max_cost_kwh": 60.0,
+      "c_rate_charge": 0.3,
+      "c_rate_discharge": 0.3,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.15, "cycle_life": 0.55, "thermal": 0.10, "cost": 0.20},
+      "dimensions": {}
+    },
+    "tags": ["grid", "lfp", "25-year-life", "hard"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_arctic_ev_001",
+    "domain": "battery",
+    "category": "ev_traction",
+    "difficulty": "hard",
+    "description": "Design an NMC cell for Arctic EV operation (Norway, Alaska, Siberia). Ambient -40°C is the design condition. At -40°C, lithium plating during any charging is nearly certain without the right microstructure — the cell must allow ion transport at cryogenic temperatures. Charging limited to 0.2C. Target 230 Wh/kg, 600 cycle life. The tradeoff between low-temperature porosity and room-temperature energy density is the core challenge.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 230.0,
+      "min_cycle_life": 600,
+      "max_peak_temp_c": 38.0,
+      "max_cost_kwh": 150.0,
+      "c_rate_charge": 0.2,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": -40.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.20, "cycle_life": 0.40, "thermal": 0.25, "cost": 0.15},
+      "dimensions": {}
+    },
+    "tags": ["ev", "nmc", "arctic", "cryogenic", "hard"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_satellite_001",
+    "domain": "battery",
+    "category": "space",
+    "difficulty": "hard",
+    "description": "Design an NMC cell for a low-Earth orbit satellite. The cell undergoes 5500 charge-discharge cycles per year (one cycle per 90-minute orbit). 2000 cycle life required (roughly 1 year LEO operation). Target 280 Wh/kg — mass budget is extreme. Orbital temperature cycling: ambient averages 20°C but swings. Peak temperature absolutely cannot exceed 30°C in the sealed spacecraft. Zero field-serviceability means failure is mission loss.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 280.0,
+      "min_cycle_life": 2000,
+      "max_peak_temp_c": 30.0,
+      "max_cost_kwh": 400.0,
+      "c_rate_charge": 1.0,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 20.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.40, "cycle_life": 0.25, "thermal": 0.30, "cost": 0.05},
+      "dimensions": {}
+    },
+    "tags": ["space", "nmc", "satellite", "leo", "hard"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_implantable_001",
+    "domain": "battery",
+    "category": "medical",
+    "difficulty": "hard",
+    "description": "Design an LFP cell for a next-generation implantable cardiac device. The cell must operate at 37°C body temperature for 10+ years with 5000 cycles. Charge rate: 0.05C (wireless charging through skin). Temperature tolerance is ±1°C from 38°C — thermal limits are absolute at 38°C (protein denaturation risk). Every µW of heat generated is a patient safety concern. Cost tolerance: $500/kWh is acceptable for life-critical applications.",
+    "requirements": {
+      "chemistry": "LFP",
+      "target_energy_density_whkg": 150.0,
+      "min_cycle_life": 5000,
+      "max_peak_temp_c": 38.0,
+      "max_cost_kwh": 500.0,
+      "c_rate_charge": 0.05,
+      "c_rate_discharge": 0.1,
+      "ambient_temp_c": 37.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.15, "cycle_life": 0.30, "thermal": 0.50, "cost": 0.05},
+      "dimensions": {}
+    },
+    "tags": ["medical", "lfp", "implantable", "safety-critical", "hard"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_hypercar_001",
+    "domain": "battery",
+    "category": "motorsport",
+    "difficulty": "hard",
+    "description": "Design an NMC cell for a 1000+ hp electric hypercar (think Rimac Nevera class). Extreme 5C charge, 8C discharge for drag strip performance. Weight budget is tight: 300 Wh/kg target — this is near the theoretical ceiling for NMC532. 300 cycle life acceptable. Temperature must stay below 33°C during peak performance — demanding given 8C discharge heat generation. This is the hardest thermal + energy density combination in the task suite.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 300.0,
+      "min_cycle_life": 300,
+      "max_peak_temp_c": 33.0,
+      "max_cost_kwh": 300.0,
+      "c_rate_charge": 5.0,
+      "c_rate_discharge": 8.0,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.40, "cycle_life": 0.10, "thermal": 0.40, "cost": 0.10},
+      "dimensions": {}
+    },
+    "tags": ["motorsport", "nmc", "hypercar", "extreme", "hard"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_deep_space_001",
+    "domain": "battery",
+    "category": "space",
+    "difficulty": "hard",
+    "description": "Design an NMC cell for a deep space probe (Mars/Jupiter mission profile). Ambient -60°C during cruise phase. The cell must function at cryogenic temperatures where most electrolytes fail. Target 275 Wh/kg with 1000 cycle life. Charge at 0.5C only. Peak temperature must stay below 25°C — the spacecraft thermal control system has limited capacity. This is one of the most extreme design envelopes possible.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 275.0,
+      "min_cycle_life": 1000,
+      "max_peak_temp_c": 25.0,
+      "max_cost_kwh": 500.0,
+      "c_rate_charge": 0.5,
+      "c_rate_discharge": 0.5,
+      "ambient_temp_c": -60.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.35, "cycle_life": 0.25, "thermal": 0.35, "cost": 0.05},
+      "dimensions": {}
+    },
+    "tags": ["space", "nmc", "deep-space", "cryogenic", "hard"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_submarine_ess_001",
+    "domain": "battery",
+    "category": "defense",
+    "difficulty": "hard",
+    "description": "Design an NMC cell for a submarine energy storage system. The submarine hull has extreme space and weight constraints. Target 265 Wh/kg with 1200 cycle life (10-year service life, 4 cycles/week). Temperature limit 38°C — hull thermal management has limited capacity. 0.5C operation. Cost tolerance $250/kWh is acceptable for defense applications.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 265.0,
+      "min_cycle_life": 1200,
+      "max_peak_temp_c": 38.0,
+      "max_cost_kwh": 250.0,
+      "c_rate_charge": 0.5,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 20.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.35, "cycle_life": 0.30, "thermal": 0.25, "cost": 0.10},
+      "dimensions": {}
+    },
+    "tags": ["defense", "nmc", "submarine", "hard"],
+    "version": "1.0"
+  },
+  {
+    "task_id": "cell_nextgen_target_001",
+    "domain": "battery",
+    "category": "research",
+    "difficulty": "hard",
+    "description": "Design an NMC cell that demonstrates next-generation performance targets. Industry roadmap calls for 310 Wh/kg with 1500 cycle life by 2027. This task represents the frontier — most parameter combinations will not achieve both simultaneously. 2C charge (fast enough for 30-minute charging). Temperature below 35°C. This task is intentionally at or beyond the theoretical limit for NMC532 with current electrode architectures. Top scores will likely require near-optimal electrode thickness, density, and particle size across all dimensions.",
+    "requirements": {
+      "chemistry": "NMC532",
+      "target_energy_density_whkg": 310.0,
+      "min_cycle_life": 1500,
+      "max_peak_temp_c": 35.0,
+      "max_cost_kwh": 150.0,
+      "c_rate_charge": 2.0,
+      "c_rate_discharge": 1.0,
+      "ambient_temp_c": 25.0
+    },
+    "grading_criteria": {
+      "weights": {"energy": 0.35, "cycle_life": 0.35, "thermal": 0.20, "cost": 0.10},
+      "dimensions": {}
+    },
+    "tags": ["research", "nmc", "frontier", "hard"],
+    "version": "1.0"
+  }
+]

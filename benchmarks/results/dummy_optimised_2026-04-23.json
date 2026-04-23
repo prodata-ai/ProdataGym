@@ -1,0 +1,124 @@
+{
+  "model": "dummy_optimised",
+  "model_params": null,
+  "rl_trained": false,
+  "rl_episodes": null,
+  "eval_date": "2026-04-23",
+  "evaluator": "anonymous",
+  "hardware": "local",
+  "overall_pass_rate": 0.7,
+  "pass_rate_by_difficulty": {
+    "easy": 0.7
+  },
+  "mean_scores": {
+    "energy": 1.0,
+    "cycle_life": 0.6497,
+    "thermal": 1.0,
+    "cost": 0.9887
+  },
+  "n_tasks": 10,
+  "elapsed_seconds": 4.7,
+  "dataset_mode": false,
+  "task_results": {
+    "cell_ev_commuter_001": {
+      "passed": true,
+      "reward": 1.0,
+      "dimension_scores": {
+        "energy": 1.0,
+        "cycle_life": 1.0,
+        "thermal": 1.0,
+        "cost": 1.0
+      }
+    },
+    "cell_ev_standard_001": {
+      "passed": true,
+      "reward": 0.9746,
+      "dimension_scores": {
+        "energy": 1.0,
+        "cycle_life": 0.9275,
+        "thermal": 1.0,
+        "cost": 1.0
+      }
+    },
+    "cell_consumer_phone_001": {
+      "passed": true,
+      "reward": 1.0,
+      "dimension_scores": {
+        "energy": 1.0,
+        "cycle_life": 1.0,
+        "thermal": 1.0,
+        "cost": 1.0
+      }
+    },
+    "cell_grid_storage_basic_001": {
+      "passed": false,
+      "reward": 0.6466,
+      "dimension_scores": {
+        "energy": 1.0,
+        "cycle_life": 0.0,
+        "thermal": 1.0,
+        "cost": 0.9775
+      }
+    },
+    "cell_ebike_001": {
+      "passed": true,
+      "reward": 0.8397,
+      "dimension_scores": {
+        "energy": 1.0,
+        "cycle_life": 0.542,
+        "thermal": 1.0,
+        "cost": 1.0
+      }
+    },
+    "cell_escooter_001": {
+      "passed": false,
+      "reward": 0.6598,
+      "dimension_scores": {
+        "energy": 1.0,
+        "cycle_life": 0.028,
+        "thermal": 1.0,
+        "cost": 1.0
+      }
+    },
+    "cell_laptop_001": {
+      "passed": true,
+      "reward": 1.0,
+      "dimension_scores": {
+        "energy": 1.0,
+        "cycle_life": 1.0,
+        "thermal": 1.0,
+        "cost": 1.0
+      }
+    },
+    "cell_power_tool_001": {
+      "passed": true,
+      "reward": 1.0,
+      "dimension_scores": {
+        "energy": 1.0,
+        "cycle_life": 1.0,
+        "thermal": 1.0,
+        "cost": 1.0
+      }
+    },
+    "cell_drone_001": {
+      "passed": true,
+      "reward": 1.0,
+      "dimension_scores": {
+        "energy": 1.0,
+        "cycle_life": 1.0,
+        "thermal": 1.0,
+        "cost": 1.0
+      }
+    },
+    "cell_home_backup_001": {
+      "passed": false,
+      "reward": 0.6364,
+      "dimension_scores": {
+        "energy": 1.0,
+        "cycle_life": 0.0,
+        "thermal": 1.0,
+        "cost": 0.9093
+      }
+    }
+  }
+}
